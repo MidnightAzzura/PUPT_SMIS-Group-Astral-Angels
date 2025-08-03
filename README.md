@@ -9,3 +9,11 @@ Laravel (A php framework)
 Html, Css, Bootstrap, Javascript.
 
 Will Upload Soon!
+
+Created by Astral Angels 
+
+Lead programmer: John Paul Rodriguez (Fullstack Frontend and backend)
+
+Assistant Programmer: John Clarence A. Dela Cruz (Fullstack Frontend and backend)
+
+Documentation Team: Lairen T. Navora / Rhea Mae Rosalia 
