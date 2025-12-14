@@ -1,0 +1,39 @@
+  // Fetch supplies from the database
+        $supplies = Supply::all()->toArray();
+
+        // Calculate dashboard statistics
+        $total_products = count($supplies);
+        $total_stock = array_sum(array_column($supplies, 'Quantity'));
+        $out_of_stock = count(array_filter($supplies, function ($supply) {
+            return $supply['Quantity'] == 0;
+        }));
+        // Assuming there is a 'Supplier' column (adjust if necessary)
+        $suppliers = count(array_unique(array_column($supplies, 'Supplier')));
+
+         // Filter supplies based on stock status and search query
+        $filter = $request->query('filter', 'all');
+        $search = $request->query('search', '');
+        $filtered_supplies = array_filter($supplies, function ($supply) use ($filter, $search) {
+            if ($filter === 'low' && $supply['Quantity'] > 5) {
+                return false;
+            }
+            if ($filter === 'no' && $supply['Quantity'] > 0) {
+                return false;
+            }
+            if (($filter === 'all' || ($filter === 'low' && $supply['Quantity'] <= 5) || ($filter === 'no' && $supply['Quantity'] == 0))) {
+                if ($search && stripos($supply['ItemName'], $search) === false) {
+                    return false;
+                }
+                return true;
+            }
+            return false;
+        });
+
+        // Assume orders are stored in session (or adjust accordingly)
+        $orders = session('orders', []);
+
+        return view('dashboard.use', compact(
+            'notifications', 'supplies', 'filtered_supplies',
+            'total_products', 'total_stock', 'out_of_stock', 'suppliers',
+            'filter', 'search', 'orders'
+        ));
