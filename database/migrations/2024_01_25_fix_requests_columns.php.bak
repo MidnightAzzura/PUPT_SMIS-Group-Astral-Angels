@@ -1,0 +1,61 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+// return new class extends Migration
+// {
+//     public function up()
+//     {
+//         // First check which columns already exist
+//         $columns = Schema::getColumnListing('requests');
+        
+//         Schema::table('requests', function (Blueprint $table) use ($columns) {
+//             if (!in_array('status', $columns)) {
+//                 $table->string('status')->nullable();
+//             }
+//             if (!in_array('remarks', $columns)) {
+//                 $table->text('remarks')->nullable();
+//             }
+//             if (!in_array('received_by', $columns)) {
+//                 $table->string('received_by')->nullable();
+//             }
+//             if (!in_array('received_position', $columns)) {
+//                 $table->string('received_position')->nullable();
+//             }
+//             if (!in_array('issue_quantity', $columns)) {
+//                 $table->integer('issue_quantity')->nullable();
+//             }
+//             if (!in_array('stock_available', $columns)) {
+//                 $table->string('stock_available')->nullable();
+//             }
+//             if (!in_array('ris_file_path', $columns)) {
+//                 $table->string('ris_file_path')->nullable();
+//             }
+//             if (!in_array('created_at', $columns)) {
+//                 $table->timestamp('created_at')->nullable();
+//             }
+//             if (!in_array('updated_at', $columns)) {
+//                 $table->timestamp('updated_at')->nullable();
+//             }
+//         });
+//     }
+
+//     public function down()
+//     {
+//         Schema::table('requests', function (Blueprint $table) {
+//             $table->dropColumn([
+//                 'status',
+//                 'remarks',
+//                 'received_by',
+//                 'received_position',
+//                 'issue_quantity',
+//                 'stock_available',
+//                 'ris_file_path',
+//                 'created_at',
+//                 'updated_at'
+//             ]);
+//         });
+//     }
+// };

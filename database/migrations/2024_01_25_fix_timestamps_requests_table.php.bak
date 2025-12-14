@@ -1,0 +1,31 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
+
+// return new class extends Migration
+// {
+//     public function up()
+//     {
+//         Schema::table('Requests', function (Blueprint $table) {
+//             if (!Schema::hasColumn('Requests', 'updated_at')) {
+//                 $table->timestamp('updated_at')->nullable()->useCurrent();
+//             }
+//             if (!Schema::hasColumn('Requests', 'created_at')) {
+//                 $table->timestamp('created_at')->nullable()->useCurrent();
+//             }
+//         });
+
+//         // Update existing records to have current timestamps
+//         DB::statement('UPDATE Requests SET updated_at = CURRENT_TIMESTAMP, created_at = CURRENT_TIMESTAMP WHERE updated_at IS NULL');
+//     }
+
+//     public function down()
+//     {
+//         Schema::table('Requests', function (Blueprint $table) {
+//             $table->dropColumn(['updated_at', 'created_at']);
+//         });
+//     }
+// };

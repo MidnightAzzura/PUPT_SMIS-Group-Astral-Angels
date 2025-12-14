@@ -1,0 +1,46 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+// return new class extends Migration
+// {
+//     public function up()
+//     {
+//         Schema::table('Requests', function (Blueprint $table) {
+//             if (!Schema::hasColumn('Requests', 'remarks')) {
+//                 $table->string('remarks')->nullable();
+//             }
+//             if (!Schema::hasColumn('Requests', 'stock_available')) {
+//                 $table->string('stock_available')->nullable();
+//             }
+//             if (!Schema::hasColumn('Requests', 'issue_quantity')) {
+//                 $table->integer('issue_quantity')->nullable();
+//             }
+//             if (!Schema::hasColumn('Requests', 'received_by')) {
+//                 $table->string('received_by')->nullable();
+//             }
+//             if (!Schema::hasColumn('Requests', 'received_position')) {
+//                 $table->string('received_position')->nullable();
+//             }
+//             if (!Schema::hasColumn('Requests', 'ris_file_path')) {
+//                 $table->string('ris_file_path')->nullable();
+//             }
+//         });
+//     }
+
+//     public function down()
+//     {
+//         Schema::table('Requests', function (Blueprint $table) {
+//             $table->dropColumn([
+//                 'remarks',
+//                 'stock_available',
+//                 'issue_quantity',
+//                 'received_by',
+//                 'received_position',
+//                 'ris_file_path'
+//             ]);
+//         });
+//     }
+// };
