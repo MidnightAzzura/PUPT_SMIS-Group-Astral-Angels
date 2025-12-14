@@ -1,0 +1,56 @@
+/* ...existing code... */
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.card-header {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.table th, .table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+.filter-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.filter-container .form-control {
+    width: auto;
+    margin-right: 10px;
+}
+
+.filter-container .btn {
+    margin-left: 10px;
+}
