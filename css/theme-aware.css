@@ -1,0 +1,98 @@
+/**
+ * Theme-Aware CSS
+ * Contains style rules for both light and dark mode
+ */
+
+/* Light mode variables */
+:root {
+    --bg-primary: #f8fafc;
+    --text-primary: #212529;
+    --bg-card: #ffffff;
+    --text-card: #212529;
+    --bg-sidebar: #800020;
+    --text-sidebar: #ffffff;
+}
+
+/* Dark mode variables */
+[data-theme="dark"] {
+    --bg-primary: #1a1a1a;
+    --text-primary: #ffffff;
+    --bg-card: #2d2d2d;
+    --text-card: #ffffff;
+    --bg-sidebar: #0f0f0f;
+    --text-sidebar: #ffffff;
+}
+
+/* Apply theme-aware styles */
+
+/* Main background and text */
+body {
+    background-color: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Text elements */
+[data-theme="light"] p,
+[data-theme="light"] h1, 
+[data-theme="light"] h2, 
+[data-theme="light"] h3, 
+[data-theme="light"] h4, 
+[data-theme="light"] h5, 
+[data-theme="light"] h6,
+[data-theme="light"] span,
+[data-theme="light"] div:not(.sidebar):not(.card),
+[data-theme="light"] a:not(.sidebar a):not(.btn),
+[data-theme="light"] td,
+[data-theme="light"] th,
+[data-theme="light"] li:not(.sidebar li),
+[data-theme="light"] label {
+    color: #212529 !important;
+}
+
+[data-theme="dark"] p,
+[data-theme="dark"] h1, 
+[data-theme="dark"] h2, 
+[data-theme="dark"] h3, 
+[data-theme="dark"] h4, 
+[data-theme="dark"] h5, 
+[data-theme="dark"] h6,
+[data-theme="dark"] span,
+[data-theme="dark"] div:not(.sidebar):not(.card),
+[data-theme="dark"] a:not(.sidebar a):not(.btn),
+[data-theme="dark"] td,
+[data-theme="dark"] th,
+[data-theme="dark"] li:not(.sidebar li),
+[data-theme="dark"] label {
+    color: #ffffff !important;
+}
+
+/* Sidebar - always has white text */
+.sidebar, 
+.sidebar a, 
+.sidebar span, 
+.sidebar i,
+.sidebar div,
+.sidebar p,
+.sidebar h1,
+.sidebar h2,
+.sidebar h3 {
+    color: #ffffff !important;
+}
+
+/* Card styles */
+.card {
+    background-color: var(--bg-card);
+    color: var(--text-card);
+}
+
+/* Table styles */
+.table {
+    color: var(--text-primary);
+}
+
+/* Form control styles */
+.form-control {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+}

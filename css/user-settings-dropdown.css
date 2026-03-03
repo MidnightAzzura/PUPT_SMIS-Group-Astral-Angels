@@ -1,0 +1,199 @@
+.user-settings-dropdown {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 1050;
+    transition: all 0.3s ease;
+}
+
+/* Make sure dark mode toggle is extra clickable */
+.dark-mode-toggle,
+.dropdown-item[class*="dark-mode"],
+.dropdown-menu a:nth-child(2) {
+    cursor: pointer !important;
+    padding: 8px 16px !important;
+    transition: background-color 0.2s ease !important;
+}
+
+.dark-mode-toggle:hover,
+.dropdown-item[class*="dark-mode"]:hover,
+.dropdown-menu a:nth-child(2):hover {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.user-settings-dropdown button {
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 0 5px rgba(255, 255, 255, 0.2);
+    background-color: rgba(52, 58, 64, 0.9) !important;
+    border: none;
+    color: #ffffff !important;
+}
+
+/* Make sure the button stays visible on small screens */
+@media (max-width: 767px) {
+    .user-settings-dropdown {
+        top: 10px;
+        right: 10px;
+    }
+    
+    .user-settings-dropdown button {
+        width: 34px !important;
+        height: 34px !important;
+        font-size: 0.8rem;
+    }
+}
+
+.user-settings-dropdown button:hover {
+    transform: scale(1.1);
+    background-color: rgba(33, 37, 41, 1) !important;
+}
+
+/* Click effect for button */
+.user-settings-dropdown button.btn-clicked {
+    animation: pulse 0.3s ease-in-out;
+    background-color: rgba(0, 123, 255, 0.9) !important; /* Highlight with blue when clicked */
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+.user-settings-dropdown .dropdown-menu {
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border: none;
+    padding: 0.5rem 0;
+    min-width: 180px;
+}
+
+/* Manual dropdown implementation */
+.user-settings-dropdown .manual-dropdown {
+    position: absolute !important;
+    right: 0 !important;
+    top: calc(100% + 5px) !important;
+    display: none;
+    z-index: 9999 !important; /* Very high z-index to ensure visibility */
+    background-color: white !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+    border: 1px solid rgba(0,0,0,0.1) !important;
+    padding: 0.5rem 0 !important;
+    min-width: 180px !important;
+}
+
+.user-settings-dropdown .manual-dropdown.show {
+    display: block !important;
+}
+
+/* Additional style to ensure the menu appears when displayed explicitly via JS */
+#userSettingsDropdownMenu[style*="display: block"] {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+}
+
+.user-settings-dropdown .dropdown-header {
+    font-weight: 600;
+    color: #6c757d;
+}
+
+.user-settings-dropdown .dropdown-item {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+}
+
+.user-settings-dropdown .dropdown-item:hover {
+    background-color: #f0f2f5;
+    transform: translateX(3px);
+}
+
+.user-settings-dropdown .dropdown-item i {
+    width: 20px;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.user-settings-dropdown .dropdown-item:hover i {
+    transform: scale(1.2);
+}
+
+/* Active state for dropdown items */
+.user-settings-dropdown .dropdown-item.item-active {
+    background-color: rgba(0, 123, 255, 0.1);
+}
+
+/* Animation for dropdown */
+.user-settings-dropdown .dropdown-menu.show {
+    animation: dropdownFadeIn 0.2s ease-out;
+}
+
+/* Initial animation for the button on page load */
+.user-settings-dropdown button {
+    animation: buttonFadeIn 0.5s ease-out;
+}
+
+@keyframes buttonFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes dropdownFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Dark Mode Toggle Styling */
+.dark-mode-toggle {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+/* Dark mode adaptations for dropdown */
+[data-theme="dark"] .user-settings-dropdown .manual-dropdown {
+    background-color: #2d2d2d !important;
+    border: 1px solid #555555 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="dark"] .user-settings-dropdown .dropdown-header {
+    color: #b0b0b0 !important;
+}
+
+[data-theme="dark"] .user-settings-dropdown .dropdown-item {
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .user-settings-dropdown .dropdown-item:hover {
+    background-color: #3a3a3a !important;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .user-settings-dropdown .dropdown-divider {
+    border-color: #555555 !important;
+}
+
+[data-theme="dark"] .user-settings-dropdown button {
+    background-color: rgba(45, 45, 45, 0.9) !important;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .user-settings-dropdown button:hover {
+    background-color: rgba(58, 58, 58, 1) !important;
+}

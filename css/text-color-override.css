@@ -1,0 +1,96 @@
+/**
+ * Text Color Override CSS
+ * This file directly overrides text colors across the site
+ */
+
+/* Global text color override - highest priority */
+body, 
+p, 
+h1, h2, h3, h4, h5, h6, 
+span, 
+div:not(.btn):not(.badge):not(.sidebar):not(.sidebar *), 
+li:not(.sidebar *), 
+td, th, 
+label, 
+a:not(.sidebar *):not(.btn),
+.card-body,
+.card-title,
+.card-text,
+.modal-body,
+.modal-content,
+.container * {
+    color: #ffffff !important;
+}
+
+/* Sidebar specific colors */
+.sidebar, 
+.sidebar *,
+.sidebar a, 
+.sidebar h3, 
+.sidebar span, 
+.sidebar i,
+.sidebar div,
+.sidebar p {
+    color: #ffffff !important;
+}
+
+/* Special card colors */
+.bg-primary, .bg-primary *,
+.bg-success, .bg-success *,
+.bg-danger, .bg-danger *,
+.bg-info, .bg-info *,
+.bg-warning, .bg-warning *,
+.card-header.bg-primary, .card-header.bg-primary *,
+.card-header.bg-success, .card-header.bg-success *,
+.card-header.bg-danger, .card-header.bg-danger *,
+.card-header.bg-info, .card-header.bg-info * {
+    color: #ffffff !important;
+}
+
+/* Alert colors */
+.alert-success, .alert-success *,
+.alert-danger, .alert-danger *,
+.alert-warning, .alert-warning *,
+.alert-info, .alert-info * {
+    color: inherit !important;
+}
+
+/* Button text */
+.btn, .btn * {
+    color: inherit !important;
+}
+
+/* Specific elements */
+.welcome-banner h1,
+.welcome-banner p,
+.dashboard-banner h1,
+.dashboard-banner p {
+    color: #ffffff !important; /* White for banner text */
+}
+
+/* Table styles */
+.table, .table tr, .table td, .table th {
+    color: #ffffff !important;
+}
+
+/* Dropdown menu */
+.dropdown-menu,
+.dropdown-item {
+    color: #ffffff !important;
+}
+
+/* Theme-dependent styles */
+[data-theme="dark"], [data-theme="dark"] body {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+}
+
+[data-theme="light"], [data-theme="light"] body {
+    background-color: #f8fafc !important;
+    color: #212529 !important;
+}
+
+/* Default */
+html, body {
+    transition: background-color 0.3s, color 0.3s;
+}
