@@ -1,0 +1,64 @@
+/* 
+ * Force Notification Badge Visibility - Never Hide
+ * This CSS ensures notification badges never disappear once they appear
+ */
+
+.notification-badge {
+    /* Force visibility and prevent hiding */
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    
+    /* Basic badge styling */
+    background-color: #dc3545 !important;
+    color: white !important;
+    border-radius: 10px !important;
+    padding: 2px 6px !important;
+    font-size: 11px !important;
+    font-weight: bold !important;
+    min-width: 18px !important;
+    height: 18px !important;
+    text-align: center !important;
+    line-height: 14px !important;
+    margin-left: 5px !important;
+}
+
+/* Remove any hidden classes that might be applied */
+.notification-badge.hidden {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Ensure badges stay visible in all states */
+.notification-badge[style*="display: none"] {
+    display: inline-flex !important;
+}
+
+.notification-badge[style*="visibility: hidden"] {
+    visibility: visible !important;
+}
+
+.notification-badge[style*="opacity: 0"] {
+    opacity: 1 !important;
+}
+
+/* Special handling for empty or zero badges - hide only if truly empty */
+.notification-badge:empty {
+    display: none !important;
+}
+
+.notification-badge[data-count="0"] {
+    display: none !important;
+}
+
+/* Pulse animation for new notifications */
+@keyframes badge-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.notification-badge.new-count {
+    animation: badge-pulse 0.5s ease-in-out 3;
+}

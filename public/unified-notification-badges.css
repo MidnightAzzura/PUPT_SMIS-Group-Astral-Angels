@@ -1,0 +1,242 @@
+/* =====================================================================
+   UNIFIED NOTIFICATION BADGE STYLES
+   Beautiful, modern, and functional notification badges for both user and admin
+   ===================================================================== */
+
+/* ===== CSS VARIABLES ===== */
+:root {
+    --badge-primary: linear-gradient(135deg, #dc3545 0%, #e74c3c 50%, #c0392b 100%);
+    --badge-success: linear-gradient(135deg, #28a745 0%, #20c997 50%, #17a2b8 100%);
+    --badge-warning: linear-gradient(135deg, #ffc107 0%, #ffb300 50%, #ff8f00 100%);
+    --badge-info: linear-gradient(135deg, #007bff 0%, #0056b3 50%, #004085 100%);
+    --badge-purple: linear-gradient(135deg, #6f42c1 0%, #7b1fa2 50%, #4a148c 100%);
+    --badge-dark: linear-gradient(135deg, #343a40 0%, #495057 50%, #212529 100%);
+    
+    --badge-shadow-primary: rgba(220, 53, 69, 0.4);
+    --badge-shadow-success: rgba(40, 167, 69, 0.4);
+    --badge-shadow-warning: rgba(255, 193, 7, 0.4);
+    --badge-shadow-info: rgba(0, 123, 255, 0.4);
+    --badge-shadow-purple: rgba(111, 66, 193, 0.4);
+    --badge-shadow-dark: rgba(52, 58, 64, 0.4);
+    
+    --badge-border: rgba(255, 255, 255, 0.9);
+    --badge-text: #ffffff;
+    --badge-size: 20px;
+    --badge-font-size: 0.65rem;
+    --badge-animation-duration: 0.3s;
+    --badge-animation-easing: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== SHARED BASE BADGE STYLES ===== */
+.notification-badge,
+.sidebar .notification-badge {
+    background: var(--badge-primary);
+    color: var(--badge-text);
+    border-radius: 50%;
+    padding: 3px 7px;
+    font-size: var(--badge-font-size);
+    font-weight: 700;
+    min-width: var(--badge-size);
+    height: var(--badge-size);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    box-shadow: 0 2px 8px var(--badge-shadow-primary);
+    border: 2px solid var(--badge-border);
+    transition: all var(--badge-animation-duration) var(--badge-animation-easing);
+    z-index: 10;
+    animation: badgeAppear 0.5s ease-out;
+    user-select: none;
+    cursor: default;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* Position badges in the sidebar */
+.sidebar .notification-badge {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 0;
+}
+
+/* Ensure sidebar links can contain badges */
+.sidebar a {
+    position: relative;
+}
+
+/* ===== BADGE STATES & INTERACTIONS ===== */
+
+/* Hover Effect */
+.notification-badge:hover,
+.sidebar .notification-badge:hover {
+    transform: scale(1.15);
+    box-shadow: 0 4px 15px var(--badge-shadow-primary);
+    background: linear-gradient(135deg, #e74c3c 0%, #dc3545 50%, #b71c1c 100%);
+}
+
+/* Sidebar badge hover needs to maintain vertical position */
+.sidebar .notification-badge:hover {
+    transform: translateY(-50%) scale(1.15);
+}
+
+/* Active/Pressed State */
+.notification-badge:active,
+.sidebar .notification-badge:active {
+    transform: scale(0.95);
+    transition-duration: 0.1s;
+}
+
+/* Sidebar badge active needs to maintain vertical position */
+.sidebar .notification-badge:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+/* Focus State for Accessibility */
+.notification-badge:focus-visible,
+.sidebar .notification-badge:focus-visible {
+    outline: 2px solid var(--badge-border);
+    outline-offset: 2px;
+}
+
+/* ===== BADGE VARIATIONS ===== */
+
+/* Success/Approved Notifications */
+.notification-badge.approved,
+.notification-badge.success,
+.sidebar .notification-badge.approved,
+.sidebar .notification-badge.success {
+    background: var(--badge-success);
+    box-shadow: 0 2px 8px var(--badge-shadow-success);
+}
+
+.notification-badge.approved:hover,
+.notification-badge.success:hover,
+.sidebar .notification-badge.approved:hover,
+.sidebar .notification-badge.success:hover {
+    box-shadow: 0 4px 15px var(--badge-shadow-success);
+    background: linear-gradient(135deg, #20c997 0%, #28a745 50%, #155724 100%);
+}
+
+/* Warning/Pending Notifications */
+.notification-badge.pending,
+.notification-badge.warning,
+.sidebar .notification-badge.pending,
+.sidebar .notification-badge.warning {
+    background: var(--badge-warning);
+    box-shadow: 0 2px 8px var(--badge-shadow-warning);
+    color: #212529;
+}
+
+.notification-badge.pending:hover,
+.notification-badge.warning:hover,
+.sidebar .notification-badge.pending:hover,
+.sidebar .notification-badge.warning:hover {
+    box-shadow: 0 4px 15px var(--badge-shadow-warning);
+    background: linear-gradient(135deg, #ffb300 0%, #ffc107 50%, #e0a800 100%);
+}
+
+/* Info/Total Notifications */
+.notification-badge.total,
+.notification-badge.info,
+.sidebar .notification-badge.total,
+.sidebar .notification-badge.info {
+    background: var(--badge-info);
+    box-shadow: 0 2px 8px var(--badge-shadow-info);
+}
+
+.notification-badge.total:hover,
+.notification-badge.info:hover,
+.sidebar .notification-badge.total:hover,
+.sidebar .notification-badge.info:hover {
+    box-shadow: 0 4px 15px var(--badge-shadow-info);
+    background: linear-gradient(135deg, #0056b3 0%, #007bff 50%, #004085 100%);
+}
+
+/* Released/Purple Notifications */
+.notification-badge.released,
+.notification-badge.purple,
+.sidebar .notification-badge.released,
+.sidebar .notification-badge.purple {
+    background: var(--badge-purple);
+    box-shadow: 0 2px 8px var(--badge-shadow-purple);
+}
+
+.notification-badge.released:hover,
+.notification-badge.purple:hover,
+.sidebar .notification-badge.released:hover,
+.sidebar .notification-badge.purple:hover {
+    box-shadow: 0 4px 15px var(--badge-shadow-purple);
+    background: linear-gradient(135deg, #7b1fa2 0%, #6f42c1 50%, #4a148c 100%);
+}
+
+/* ===== ANIMATIONS ===== */
+
+/* Appear Animation */
+@keyframes badgeAppear {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) rotate(180deg);
+    }
+    50% {
+        transform: scale(1.2) rotate(90deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* Pulse Animation for New Notifications */
+.notification-badge.pulse,
+.sidebar .notification-badge.pulse {
+    animation: badgePulse 2s infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% {
+        transform: translateY(-50%) scale(1);
+        box-shadow: 0 2px 8px var(--badge-shadow-primary);
+    }
+    50% {
+        transform: translateY(-50%) scale(1.1);
+        box-shadow: 0 4px 15px var(--badge-shadow-primary);
+    }
+}
+
+/* Special handling for non-sidebar pulse animation */
+.notification-badge:not(.sidebar .notification-badge).pulse {
+    animation: simplePulse 2s infinite;
+}
+
+@keyframes simplePulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 2px 8px var(--badge-shadow-primary);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 4px 15px var(--badge-shadow-primary);
+    }
+}
+
+/* ===== COLLAPSED SIDEBAR ADJUSTMENTS ===== */
+.sidebar.collapsed .notification-badge {
+    right: 5px;
+}
+
+/* Hide zero count badges */
+.notification-badge:empty,
+.notification-badge[data-count="0"],
+.sidebar .notification-badge:empty,
+.sidebar .notification-badge[data-count="0"] {
+    display: none;
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 768px) {
+    .sidebar .notification-badge {
+        right: 10px;
+    }
+}
