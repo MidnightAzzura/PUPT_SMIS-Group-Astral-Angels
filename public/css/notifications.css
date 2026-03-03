@@ -1,0 +1,811 @@
+/* Basic layout styles - consistent with other pages */
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+}
+
+/* Sidebar styling - Enhanced version */
+.sidebar {
+    width: 250px;
+    background-color: #800000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 20px;
+    transition: width 0.3s;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    text-align: left;
+    z-index: 1001;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar.collapsed {
+    width: 80px;
+}
+
+.sidebar h3 {
+    width: 100%;
+    text-align: center;
+    margin: 0 0 20px;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar.collapsed h3 {
+    opacity: 0;
+}
+
+.sidebar a {
+    color: #fff;
+    text-decoration: none;
+    width: 90%;
+    margin-left: 5%;
+    padding: 10px 15px;
+    padding-right: 50px; /* Make room for notification badges */
+    text-align: left;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    transition: all 0.3s;
+    position: relative; /* Enable absolute positioning for badges */
+}
+
+.sidebar a i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+.sidebar.collapsed a i {
+    margin-right: 0;
+}
+
+.sidebar.collapsed a span:not(.notification-badge) {
+    display: none;
+}
+
+/* Notification badge styles for sidebar */
+.sidebar .notification-badge {
+    background: #dc3545;
+    color: #ffffff;
+    border-radius: 12px;
+    padding: 4px 8px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    min-width: 22px;
+    height: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    box-shadow: 0 3px 12px rgba(220, 53, 69, 0.5);
+    border: 2px solid rgba(255, 255, 255, 1);
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 15;
+    visibility: visible;
+    opacity: 1;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+/* Ensure badges are always visible */
+.sidebar .notification-badge:not(:empty) {
+    display: inline-flex !important;
+}
+
+/* Hide empty badges */
+.sidebar .notification-badge:empty,
+.sidebar .notification-badge[data-count="0"] {
+    display: none !important;
+}
+
+.sidebar a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-left: 4px solid white;
+}
+
+/* Dropdown container */
+.dropdown-container {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 8px 0;
+    margin: 0;
+    text-align: left;
+    border-radius: 5px;
+    width: 90%;
+    margin-left: 5%;
+}
+
+.dropdown-container a {
+    padding: 8px 25px;
+    width: 100%;
+    margin-left: 0;
+    justify-content: flex-start;
+}
+
+/* Main content area */
+.main-content {
+    margin-left: 250px;
+    flex: 1;
+    padding: 20px;
+    overflow-y: visible;
+    overflow-x: auto;
+    transition: margin-left 0.3s;
+    min-width: 0;
+}
+
+.sidebar.collapsed + .main-content {
+    margin-left: 80px;
+}
+
+.main-content.collapsed {
+    margin-left: 80px;
+}
+
+/* Toggle button for sidebar */
+.toggle-sidebar-btn {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1002;
+    background-color: #800000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: left 0.3s ease, background-color 0.3s ease;
+}
+
+.toggle-sidebar-btn:hover {
+    background-color: #990000;
+}
+
+/* Dashboard Header Styles */
+.dashboard-header {
+    background: linear-gradient(135deg,  #990000,  #990000);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.dashboard-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
+    pointer-events: none;
+}
+
+.header-content {
+    position: relative;
+    z-index: 2;
+}
+
+.welcome-text {
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.user-name {
+    color: #f3f3f3;
+    font-weight: 700;
+}
+
+.header-subtitle {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    margin: 0;
+    font-weight: 300;
+}
+
+/* Header styling */
+.header {
+    background: linear-gradient(135deg, #800020, #9a0026);
+    color: #fff;
+    padding: 25px;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(128, 0, 32, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.header:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+    z-index: 0;
+}
+
+.header h2 {
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+    font-size: 2rem;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Notifications Page Styles */
+.notifications-container {
+    max-width: 100%;
+}
+
+.notification-item {
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 20px;
+    background: #ffffff;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.notification-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.notification-item.unread {
+    border-left: 4px solid #007bff;
+    background: #f8f9ff;
+}
+
+.notification-item.read {
+    border-left: 4px solid #6c757d;
+    background: #ffffff;
+    opacity: 0.8;
+}
+
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.notification-icon {
+    font-size: 1.2rem;
+    margin-right: 10px;
+}
+
+.notification-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.notification-time {
+    color: #6c757d;
+    font-size: 0.875rem;
+}
+
+.notification-body {
+    margin: 15px 0;
+}
+
+.notification-message {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.notification-actions-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.notification-actions {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.notification-filters .nav-tabs {
+    border-bottom: 2px solid #dee2e6;
+}
+
+.notification-filters .nav-link {
+    border: none;
+    color: #6c757d;
+    font-weight: 500;
+    padding: 12px 20px;
+    margin-right: 5px;
+    border-radius: 8px 8px 0 0;
+    transition: all 0.3s ease;
+}
+
+.notification-filters .nav-link:hover {
+    background-color: #f8f9fa;
+    color: #007bff;
+}
+
+.notification-filters .nav-link.active {
+    background-color: #007bff;
+    color: #ffffff;
+    border-bottom: 2px solid #007bff;
+}
+
+.empty-notifications {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    border: 2px dashed #dee2e6;
+}
+
+.empty-notifications i {
+    color: #adb5bd;
+}
+
+/* ===== NOTIFICATION BADGE STYLES ===== */
+/* Modern, beautiful notification badges with animations and visual appeal */
+
+.notification-badge {
+    background: linear-gradient(135deg, #dc3545 0%, #e74c3c 50%, #c0392b 100%);
+    color: white;
+    border-radius: 50%;
+    padding: 3px 7px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    margin-left: 8px;
+    min-width: 20px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 10;
+    animation: badgeAppear 0.5s ease-out;
+}
+
+/* Badge hover effect */
+.notification-badge:hover {
+    transform: scale(1.15);
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.6);
+    background: linear-gradient(135deg, #e74c3c 0%, #dc3545 50%, #b71c1c 100%);
+}
+
+/* Pulsing animation for new notifications */
+.notification-badge.pulse {
+    animation: badgePulse 2s infinite;
+}
+
+/* Badge appear animation */
+@keyframes badgeAppear {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) rotate(180deg);
+    }
+    50% {
+        transform: scale(1.2) rotate(90deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* Pulse animation for attention */
+@keyframes badgePulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 2px 8px rgba(220, 53, 69, 0.4);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 4px 15px rgba(220, 53, 69, 0.7);
+    }
+}
+
+/* Glow effect for high priority notifications */
+.notification-badge.high-priority {
+    background: linear-gradient(135deg, #ff4757 0%, #ff3742 50%, #ff1744 100%);
+    box-shadow: 0 2px 12px rgba(255, 71, 87, 0.6);
+    animation: badgeGlow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes badgeGlow {
+    from {
+        box-shadow: 0 2px 12px rgba(255, 71, 87, 0.6);
+    }
+    to {
+        box-shadow: 0 4px 20px rgba(255, 71, 87, 0.9);
+    }
+}
+
+/* Different badge colors for different notification types */
+.notification-badge.approved {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 50%, #17a2b8 100%);
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.4);
+}
+
+.notification-badge.pending {
+    background: linear-gradient(135deg, #ffc107 0%, #ffb300 50%, #ff8f00 100%);
+    box-shadow: 0 2px 8px rgba(255, 193, 7, 0.4);
+}
+
+.notification-badge.released {
+    background: linear-gradient(135deg, #6f42c1 0%, #7b1fa2 50%, #4a148c 100%);
+    box-shadow: 0 2px 8px rgba(111, 66, 193, 0.4);
+}
+
+.notification-badge.total {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 50%, #004085 100%);
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.4);
+}
+
+/* ===== SIDEBAR NOTIFICATION STYLES ===== */
+/* Enhanced sidebar badge positioning and animations */
+
+.sidebar a {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.sidebar .notification-badge {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    z-index: 15;
+    border: 2px solid rgba(255, 255, 255, 0.95);
+}
+
+/* Sidebar collapsed state badge positioning */
+.sidebar.collapsed .notification-badge {
+    right: 5px;
+    transform: translateY(-50%) scale(0.9);
+}
+
+/* Badge visibility when sidebar text is hidden */
+.sidebar.collapsed a span:not(.notification-badge) {
+    display: none;
+}
+
+.sidebar.collapsed a .notification-badge {
+    display: inline-flex !important;
+}
+
+/* Enhanced link hover effects with badges */
+.sidebar a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-left: 4px solid rgba(255, 255, 255, 0.8);
+    transform: translateX(5px);
+}
+
+.sidebar a:hover .notification-badge {
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 3px 12px rgba(220, 53, 69, 0.6);
+}
+
+/* ===== NOTIFICATION COUNT ANIMATIONS ===== */
+/* Smooth number changes and transitions */
+
+.notification-badge.updating {
+    animation: badgeUpdate 0.6s ease-in-out;
+}
+
+@keyframes badgeUpdate {
+    0% { transform: translateY(-50%) scale(1); }
+    25% { transform: translateY(-50%) scale(1.3) rotateY(90deg); }
+    75% { transform: translateY(-50%) scale(1.3) rotateY(-90deg); }
+    100% { transform: translateY(-50%) scale(1) rotateY(0deg); }
+}
+
+/* Badge disappear animation */
+.notification-badge.hiding {
+    animation: badgeDisappear 0.4s ease-in forwards;
+}
+
+@keyframes badgeDisappear {
+    0% {
+        opacity: 1;
+        transform: translateY(-50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-50%) scale(0);
+        display: none;
+    }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+/* Badge adaptations for different screen sizes */
+
+@media (max-width: 768px) {
+    .notification-badge {
+        min-width: 18px;
+        height: 18px;
+        font-size: 0.6rem;
+        padding: 2px 5px;
+    }
+    
+    .sidebar .notification-badge {
+        right: 10px;
+    }
+    
+    .sidebar.collapsed .notification-badge {
+        right: 3px;
+    }
+}
+
+@media (max-width: 480px) {
+    .notification-badge {
+        min-width: 16px;
+        height: 16px;
+        font-size: 0.55rem;
+        padding: 1px 4px;
+    }
+}
+
+/* ===== ACCESSIBILITY ENHANCEMENTS ===== */
+/* Better contrast and screen reader support */
+
+.notification-badge {
+    outline: none;
+    cursor: default;
+}
+
+.notification-badge:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.8);
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .notification-badge {
+        border: 3px solid white;
+        font-weight: 900;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .notification-badge,
+    .notification-badge:hover {
+        animation: none;
+        transition: none;
+    }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    /* Mobile sidebar - visible by default */
+    .sidebar {
+        width: 250px !important;
+        transform: translateX(0) !important;
+        transition: transform 0.3s ease;
+        z-index: 1001 !important;
+    }
+    
+    /* Sidebar collapsed on mobile */
+    .sidebar.collapsed {
+        transform: translateX(-100%) !important;
+        width: 250px !important;
+    }
+    
+    /* Show text by default on mobile */
+    .sidebar a span,
+    .sidebar h3,
+    .sidebar .dropdown-btn span {
+        display: inline !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    /* Only hide text when explicitly collapsed */
+    .sidebar.collapsed a span:not(.notification-badge),
+    .sidebar.collapsed h3,
+    .sidebar.collapsed .dropdown-btn span {
+        display: none !important;
+    }
+    
+    /* Main content adjustment for mobile */
+    .main-content {
+        margin-left: 0 !important;
+        width: 100% !important;
+        padding: 10px;
+        transition: none;
+    }
+    
+    /* Toggle button positioning on mobile */
+    .toggle-sidebar-btn {
+        left: 190px !important;
+        z-index: 1002 !important;
+        transition: left 0.3s ease;
+    }
+    
+    .sidebar.collapsed ~ .toggle-sidebar-btn,
+    body.sidebar-collapsed .toggle-sidebar-btn {
+        left: 20px !important;
+    }
+    
+    /* Mobile backdrop overlay */
+    body.sidebar-open::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        animation: fadeIn 0.3s ease;
+    }
+    
+    .notification-actions {
+        text-align: center;
+    }
+    
+    .notification-actions .row > div {
+        margin-bottom: 15px;
+    }
+    
+    .notification-filters .nav-tabs {
+        flex-wrap: wrap;
+    }
+    
+    .notification-filters .nav-link {
+        font-size: 0.875rem;
+        padding: 8px 12px;
+    }
+    
+    .notification-item {
+        padding: 15px;
+    }
+    
+    .notification-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .notification-actions-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Animation for new notifications */
+@keyframes slideInFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.notification-item.new {
+    animation: slideInFromTop 0.5s ease-out;
+}
+
+/* Loading state */
+.loading-notifications {
+    text-align: center;
+    padding: 40px;
+}
+
+.loading-notifications .spinner-border {
+    width: 3rem;
+    height: 3rem;
+    color: #007bff;
+}
+
+/* Success/Error alerts */
+.alert {
+    border-radius: 8px;
+    border: none;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border-left: 4px solid #28a745;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-left: 4px solid #dc3545;
+}
+
+/* Button hover effects */
+.btn {
+    transition: all 0.3s ease;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Tab content styling */
+.tab-content {
+    margin-top: 20px;
+}
+
+/* Custom scrollbar for notifications container */
+.notifications-container {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.notifications-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.notifications-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.notifications-container::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.notifications-container::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}

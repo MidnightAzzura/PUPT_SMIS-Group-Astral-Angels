@@ -1,0 +1,146 @@
+/* =====================================================================
+   UNIVERSAL NOTIFICATION BADGE COUNTER
+   Simple, clean notification badges for all pages
+   ===================================================================== */
+
+/* Basic Notification Badge Styling */
+.notification-badge {
+    background: #dc3545;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 10px;
+    min-width: 16px;
+    text-align: center;
+    line-height: 1;
+    display: inline-block;
+    margin-left: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+/* Sidebar Notification Badges - Enhanced Visibility */
+.sidebar .notification-badge {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 0;
+    background: #ff4757 !important;
+    color: white !important;
+    font-size: 10px !important;
+    font-weight: bold !important;
+    padding: 3px 6px !important;
+    border-radius: 12px !important;
+    min-width: 18px !important;
+    text-align: center !important;
+    line-height: 1.2 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
+    border: 1px solid rgba(255,255,255,0.5) !important;
+    z-index: 999 !important;
+    animation: pulse 2s infinite;
+}
+
+/* Pulse animation for new notifications */
+@keyframes pulse {
+    0% { transform: translateY(-50%) scale(1); }
+    50% { transform: translateY(-50%) scale(1.1); }
+    100% { transform: translateY(-50%) scale(1); }
+}
+
+/* Sidebar Link Positioning - Ensure space for badges */
+.sidebar a {
+    position: relative !important;
+    padding-right: 40px !important;
+}
+
+/* Hide Zero Count Badges - ONLY when actually empty or zero */
+.notification-badge:empty {
+    display: none !important;
+}
+
+.notification-badge[data-count="0"] {
+    display: none !important;
+}
+
+/* NEVER hide badges that contain actual numbers */
+.notification-badge:not(:empty):not([data-count="0"]) {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Specific rule: if badge has text content that's not "0", always show it */
+.notification-badge {
+    display: inline-flex !important;
+}
+
+.notification-badge:empty,
+.notification-badge[textContent=""],
+.notification-badge[textContent="0"] {
+    display: none !important;
+}
+
+/* Badge Variants */
+.badge-danger { background: #dc3545; }
+.badge-warning { background: #ffc107; color: #212529; }
+.badge-success { background: #198754; }
+.badge-info { background: #0dcaf0; color: #212529; }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar .notification-badge {
+        font-size: 9px;
+        padding: 2px 4px;
+        right: 8px;
+        min-width: 14px;
+    }
+    
+    .sidebar a {
+        padding-right: 30px !important;
+    }
+}
+
+/* =====================================================================
+   FINAL EMERGENCY FIX - SIMPLE BADGE VISIBILITY
+   ===================================================================== */
+
+/* RULE 1: All notification badges are visible by default */
+.notification-badge {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* RULE 2: Hide ONLY truly empty badges */
+.notification-badge:empty {
+    display: none !important;
+}
+
+/* RULE 3: Hide ONLY badges that contain just "0" */
+.notification-badge[data-count="0"],
+.notification-badge:contains("0"):not(:contains("1")):not(:contains("2")):not(:contains("3")):not(:contains("4")):not(:contains("5")):not(:contains("6")):not(:contains("7")):not(:contains("8")):not(:contains("9")) {
+    display: none !important;
+}
+
+/* RULE 4: Sidebar badges with specific positioning */
+.sidebar .notification-badge:not(:empty) {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: absolute !important;
+    right: 12px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    background: #ff4757 !important;
+    color: white !important;
+    padding: 3px 6px !important;
+    border-radius: 12px !important;
+    min-width: 18px !important;
+    text-align: center !important;
+    z-index: 999 !important;
+}

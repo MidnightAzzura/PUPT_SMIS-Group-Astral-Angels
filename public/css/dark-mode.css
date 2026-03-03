@@ -1,0 +1,2439 @@
+/* ============================================
+   ENHANCED DARK MODE SYSTEM - FLICKER-FREE
+   ============================================ */
+
+/* ============================================
+   INSTANT DARK MODE - LOADS FIRST
+   ============================================ */
+/* Apply dark backgrounds immediately when dark mode is detected */
+[data-theme="dark"] {
+    background-color: #1a202c !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] body {
+    background-color: #1a202c !important;
+    color: #f7fafc !important;
+}
+
+/* Force tables to be dark IMMEDIATELY */
+[data-theme="dark"] table,
+[data-theme="dark"] .table,
+[data-theme="dark"] .table-responsive,
+[data-theme="dark"] tbody,
+[data-theme="dark"] thead,
+[data-theme="dark"] tr,
+[data-theme="dark"] td,
+[data-theme="dark"] th {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+}
+
+[data-theme="dark"] thead,
+[data-theme="dark"] thead th {
+    background-color: #1a202c !important;
+}
+
+/* Force modals and cards dark IMMEDIATELY */
+[data-theme="dark"] .modal-content,
+[data-theme="dark"] .modal-body,
+[data-theme="dark"] .card,
+[data-theme="dark"] .search-filter {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+}
+
+/* Light mode variables */
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --card-bg: #ffffff;
+    --border-color: #dee2e6;
+    --modal-bg: #ffffff;
+    --dropdown-bg: #ffffff;
+    --header-bg: #ffffff;
+    --sidebar-bg: #800020;
+    --sidebar-text: #ffffff;
+    --nav-bg: #ffffff;
+    --input-bg: #ffffff;
+    --input-border: #ced4da;
+    --transition-speed: 0s; /* Disable transitions to prevent flicker */
+}
+
+/* Dark mode variables - activated when data-theme="dark" */
+[data-theme="dark"] {
+    --bg-primary: #1a202c;
+    --bg-secondary: #2d3748;
+    --text-primary: #f7fafc;
+    --text-secondary: #e2e8f0;
+    --card-bg: #2d3748;
+    --border-color: #4a5568;
+    --modal-bg: #2d3748;
+    --dropdown-bg: #2d3748;
+    --header-bg: #1a202c;
+    --sidebar-bg: #1a202c;
+    --sidebar-text: #f7fafc;
+    --nav-bg: #2d3748;
+    --input-bg: #2d3748;
+    --input-border: #4a5568;
+    --sidebar-hover: #2d3748;
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --status-available: #48bb78;
+    --status-low: #ed8936;
+    --status-out: #f56565;
+    --transition-speed: 0s; /* Disable transitions to prevent flicker */
+    
+    /* Immediately apply dark theme to prevent white flash */
+    background-color: #1a202c !important;
+    color: #f7fafc !important;
+}
+
+/* ============================================
+   FOUNDATION - HTML & BODY (HIGHEST PRIORITY)
+   ============================================ */
+
+/* GLOBAL DARK MODE - ALWAYS APPLIED */
+html[data-theme="dark"],
+[data-theme="dark"] html,
+html[data-theme="dark"] *,
+[data-theme="dark"] * {
+    color-scheme: dark !important;
+}
+
+html[data-theme="dark"],
+[data-theme="dark"] html {
+    background-color: #1a202c !important;
+}
+
+[data-theme="dark"] body {
+    background-color: #1a202c !important;
+    color: #f7fafc !important;
+    transition: none !important; /* Prevent flicker */
+}
+
+/* Override Bootstrap bg-light class */
+[data-theme="dark"] body.bg-light,
+[data-theme="dark"] .bg-light {
+    background-color: #1a202c !important;
+}
+
+/* GLOBAL: Ensure dark mode persists on ALL pages */
+[data-theme="dark"] *:not(.btn-primary):not(.btn-success):not(.btn-danger):not(.btn-warning):not(.btn-info):not(.badge):not(.alert):not(img):not(svg) {
+    border-color: #4a5568 !important;
+}
+
+/* Force all pages to respect dark mode */
+[data-theme="dark"] #app,
+[data-theme="dark"] .app,
+[data-theme="dark"] .wrapper,
+[data-theme="dark"] .page,
+[data-theme="dark"] .page-wrapper {
+    background-color: #1a202c !important;
+    color: #f7fafc !important;
+}
+
+/* Override Bootstrap's bg-* utility classes in dark mode */
+[data-theme="dark"] .bg-light,
+[data-theme="dark"] .bg-white {
+    background-color: #1a202c !important;
+}
+
+/* ============================================
+   COMPREHENSIVE WHITE BACKGROUND FIX FOR DARK MODE
+   ============================================ */
+/* Catch all white/light backgrounds and convert to dark */
+[data-theme="dark"] *:not(.btn):not(.badge):not(.alert):not(.btn-primary):not(.btn-success):not(.btn-danger):not(.btn-warning):not(.btn-info):not(.btn-light):not(.btn-dark) {
+    background-image: none !important;
+}
+
+[data-theme="dark"] div:not(.btn):not(.badge):not(.alert):not(.modal):not(.dropdown-menu),
+[data-theme="dark"] section:not(.btn):not(.badge),
+[data-theme="dark"] article:not(.btn):not(.badge),
+[data-theme="dark"] aside:not(.btn):not(.badge) {
+    background-color: transparent;
+}
+
+/* Force white backgrounds to dark - NUCLEAR OPTION */
+[data-theme="dark"] [style*="background"],
+[data-theme="dark"] [class*="bg-"],
+[data-theme="dark"] .white,
+[data-theme="dark"] .light {
+    background-color: #2d3748 !important;
+}
+
+/* Specific white background overrides */
+[data-theme="dark"] [style*="background: #fff"],
+[data-theme="dark"] [style*="background:#fff"],
+[data-theme="dark"] [style*="background: white"],
+[data-theme="dark"] [style*="background:white"],
+[data-theme="dark"] [style*="background-color: #fff"],
+[data-theme="dark"] [style*="background-color:#fff"],
+[data-theme="dark"] [style*="background-color: white"],
+[data-theme="dark"] [style*="background-color:white"],
+[data-theme="dark"] [style*="background-color: #ffffff"],
+[data-theme="dark"] [style*="background-color:#ffffff"],
+[data-theme="dark"] [style*="background-color: rgb(255, 255, 255)"],
+[data-theme="dark"] [style*="background-color:rgb(255,255,255)"] {
+    background-color: #2d3748 !important;
+}
+
+/* Force tables specifically */
+[data-theme="dark"] table[style*="background"],
+[data-theme="dark"] tbody[style*="background"],
+[data-theme="dark"] tr[style*="background"],
+[data-theme="dark"] td[style*="background"],
+[data-theme="dark"] th[style*="background"] {
+    background-color: #2d3748 !important;
+}
+
+/* ============================================
+   MAIN CONTAINERS - DARK BACKGROUND
+   ============================================ */
+[data-theme="dark"] .main-content,
+[data-theme="dark"] .dashboard-content,
+[data-theme="dark"] .modern-dashboard,
+[data-theme="dark"] .content-wrapper,
+[data-theme="dark"] .page-content,
+[data-theme="dark"] .content-area,
+[data-theme="dark"] .supplies-overview,
+[data-theme="dark"] .overview-section,
+[data-theme="dark"] .content,
+[data-theme="dark"] .main-wrapper,
+[data-theme="dark"] main,
+[data-theme="dark"] .main-panel,
+[data-theme="dark"] #app,
+[data-theme="dark"] .row {
+    background: #1a202c !important;
+    background-color: #1a202c !important;
+    background-image: none !important;
+    color: #f7fafc !important;
+    transition: none !important;
+}
+
+/* Light mode - ensure white/light backgrounds */
+body:not([data-theme="dark"]) .main-content {
+    background: #f8f9fa !important;
+    background-color: #f8f9fa !important;
+}
+/* ============================================
+   HEADERS - CONSISTENT DARK GRAY
+   ============================================ */
+[data-theme="dark"] .dashboard-header,
+[data-theme="dark"] .modern-header,
+[data-theme="dark"] .header-wrapper,
+[data-theme="dark"] .page-header,
+[data-theme="dark"] .content-header,
+[data-theme="dark"] header,
+[data-theme="dark"] .header,
+[data-theme="dark"] [class*="header"],
+[data-theme="dark"] [class*="-header"]:not(.modal-header) {
+    background: #2d3748 !important;
+    background-color: #2d3748 !important;
+    background-image: none !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+    transition: none !important;
+    padding: 20px !important;
+    border-radius: 8px !important;
+    margin-bottom: 20px !important;
+}
+
+/* Header text visibility */
+[data-theme="dark"] .header h2,
+[data-theme="dark"] .header h3,
+[data-theme="dark"] .header h4,
+[data-theme="dark"] div.header h2,
+[data-theme="dark"] .dashboard-header h2,
+[data-theme="dark"] .dashboard-header .welcome-text,
+[data-theme="dark"] .dashboard-header .header-subtitle,
+[data-theme="dark"] .dashboard-header .user-name,
+[data-theme="dark"] .header-content h2,
+[data-theme="dark"] .header-content h3,
+[data-theme="dark"] .header-content p,
+[data-theme="dark"] .header-content span,
+[data-theme="dark"] .modern-header h2,
+[data-theme="dark"] .modern-header h3,
+[data-theme="dark"] .modern-header p,
+[data-theme="dark"] .modern-header span {
+    color: #f7fafc !important;
+    text-shadow: none !important;
+}
+
+/* Light mode header styling */
+body:not([data-theme="dark"]) .dashboard-header,
+body:not([data-theme="dark"]) .modern-header,
+body:not([data-theme="dark"]) .header-wrapper,
+body:not([data-theme="dark"]) .page-header,
+body:not([data-theme="dark"]) .content-header,
+body:not([data-theme="dark"]) .header {
+    background: linear-gradient(135deg, #800020 0%, #600018 100%) !important;
+    background-color: #800020 !important;
+    color: #ffffff !important;
+    padding: 20px !important;
+    border-radius: 8px !important;
+    margin-bottom: 20px !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+}
+
+body:not([data-theme="dark"]) .header h2,
+body:not([data-theme="dark"]) .dashboard-header h2,
+body:not([data-theme="dark"]) .modern-header h2,
+body:not([data-theme="dark"]) .header-content h2 {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    margin: 0 !important;
+}
+
+body:not([data-theme="dark"]) .header-subtitle {
+    color: rgba(255, 255, 255, 0.9) !important;
+    margin: 0 !important;
+    margin-top: 5px !important;
+}
+
+/* ============================================
+   SIDEBAR - DARK WITH HIGH CONTRAST
+   ============================================ */
+[data-theme="dark"] .sidebar,
+[data-theme="dark"] .sidebar-content,
+[data-theme="dark"] .sidebar-header,
+[data-theme="dark"] .sidebar-footer {
+    background-color: #1a202c !important;
+    border-right: 1px solid #4a5568 !important;
+    color: #f7fafc !important;
+    transition: none !important;
+}
+
+[data-theme="dark"] .sidebar h3,
+[data-theme="dark"] .sidebar h4,
+[data-theme="dark"] .sidebar h5 {
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .sidebar a {
+    color: #e2e8f0 !important;
+    transition: background-color 0.15s ease !important;
+}
+
+[data-theme="dark"] .sidebar a:hover {
+    background-color: #2d3748 !important;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .sidebar .dropdown-btn {
+    color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .sidebar .dropdown-container {
+    background-color: #0d1117 !important;
+}
+
+[data-theme="dark"] .sidebar .dropdown-container a {
+    color: #cbd5e0 !important;
+}
+
+[data-theme="dark"] .sidebar i {
+    color: #e2e8f0 !important;
+}
+
+/* ============================================
+   CARDS - CONSISTENT DARK GRAY
+   ============================================ */
+[data-theme="dark"] .card,
+[data-theme="dark"] .modern-card,
+[data-theme="dark"] .dashboard-card,
+[data-theme="dark"] .stats-card,
+[data-theme="dark"] .inventory-card,
+[data-theme="dark"] .overview-card,
+[data-theme="dark"] .status-card,
+[data-theme="dark"] .section,
+[data-theme="dark"] .dashboard-overview .card,
+[data-theme="dark"] .total-products,
+[data-theme="dark"] .total-stock,
+[data-theme="dark"] .out-of-stock,
+[data-theme="dark"] .total-suppliers {
+    background-color: #2d3748 !important;
+    border: 1px solid #4a5568 !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3) !important;
+    color: #f7fafc !important;
+    transition: none !important;
+}
+
+[data-theme="dark"] .card-body,
+[data-theme="dark"] .card-header,
+[data-theme="dark"] .card-footer {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+}
+
+/* Card titles and text */
+[data-theme="dark"] .card h1,
+[data-theme="dark"] .card h2,
+[data-theme="dark"] .card h3,
+[data-theme="dark"] .card h4,
+[data-theme="dark"] .card h5,
+[data-theme="dark"] .card h6,
+[data-theme="dark"] .card p,
+[data-theme="dark"] .card span:not(.badge):not(.notification-badge),
+[data-theme="dark"] .card strong,
+[data-theme="dark"] .card label,
+[data-theme="dark"] .stats-number,
+[data-theme="dark"] .card-title,
+[data-theme="dark"] .dashboard-overview h4,
+[data-theme="dark"] .dashboard-overview .h4,
+[data-theme="dark"] .stats-text {
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .stats-label,
+[data-theme="dark"] .card-subtitle,
+[data-theme="dark"] .text-muted {
+    color: #cbd5e0 !important;
+}
+
+/* Fix for white sections/boxes in dark mode */
+[data-theme="dark"] section,
+[data-theme="dark"] .section,
+[data-theme="dark"] .box,
+[data-theme="dark"] .panel,
+[data-theme="dark"] .widget,
+[data-theme="dark"] div[class*="section"],
+[data-theme="dark"] div[class*="box"],
+[data-theme="dark"] div[class*="panel"] {
+    background-color: #2d3748 !important;
+    border-color: #4a5568 !important;
+    color: #f7fafc !important;
+}
+
+/* ============================================
+   TABLES - ENHANCED VISIBILITY
+   ============================================ */
+[data-theme="dark"] .table,
+[data-theme="dark"] table,
+[data-theme="dark"] .table-responsive,
+[data-theme="dark"] .table-wrapper {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+}
+
+[data-theme="dark"] .table th,
+[data-theme="dark"] table th,
+[data-theme="dark"] thead th {
+    background-color: #1a202c !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+    font-weight: 600 !important;
+}
+
+[data-theme="dark"] .table td,
+[data-theme="dark"] table td,
+[data-theme="dark"] tbody td {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+    font-weight: 500 !important;
+}
+
+[data-theme="dark"] .table tbody tr,
+[data-theme="dark"] table tbody tr {
+    background-color: #2d3748 !important;
+}
+
+[data-theme="dark"] .table tr:hover,
+[data-theme="dark"] table tbody tr:hover {
+    background-color: #374151 !important;
+}
+
+[data-theme="dark"] .table-striped tbody tr:nth-of-type(odd),
+[data-theme="dark"] .table-striped tbody tr:nth-of-type(odd) td {
+    background-color: #2d3748 !important;
+}
+
+[data-theme="dark"] .table-striped tbody tr:nth-of-type(even),
+[data-theme="dark"] .table-striped tbody tr:nth-of-type(even) td {
+    background-color: #374151 !important;
+}
+
+/* Quantity displays in tables */
+[data-theme="dark"] .quantity-display,
+[data-theme="dark"] .stock-quantity,
+[data-theme="dark"] .item-quantity {
+    color: #f7fafc !important;
+    font-weight: 700 !important;
+}
+
+/* Ensure all text in tables is visible */
+[data-theme="dark"] .table,
+[data-theme="dark"] .table *,
+[data-theme="dark"] table,
+[data-theme="dark"] table * {
+    color: #f7fafc !important;
+}
+
+/* Light mode table styling - MUST HAVE WHITE BACKGROUND */
+body:not([data-theme="dark"]) .table-responsive {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    border-radius: 8px;
+    padding: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+body:not([data-theme="dark"]) .table {
+    margin-bottom: 0;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+}
+
+body:not([data-theme="dark"]) .table thead th {
+    background: #800000 !important;
+    background-color: #800000 !important;
+    color: #ffffff !important;
+    font-weight: 600;
+    border: none;
+    padding: 12px 10px;
+}
+
+body:not([data-theme="dark"]) .table tbody td {
+    padding: 12px 10px;
+    vertical-align: middle;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+}
+
+body:not([data-theme="dark"]) .table tbody tr {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+}
+
+/* Search and Filter Section */
+body:not([data-theme="dark"]) .search-filter {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+[data-theme="dark"] .search-filter {
+    background: #2d3748 !important;
+    background-color: #2d3748 !important;
+    border: 1px solid #4a5568 !important;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Action Bar Styling */
+body:not([data-theme="dark"]) .action-bar {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+[data-theme="dark"] .action-bar {
+    background: #2d3748 !important;
+    background-color: #2d3748 !important;
+    border: 1px solid #4a5568 !important;
+}
+
+/* Content Container Styling */
+body:not([data-theme="dark"]) .content-container {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+[data-theme="dark"] .content-container {
+    background: #2d3748 !important;
+    background-color: #2d3748 !important;
+    border: 1px solid #4a5568 !important;
+}
+
+/* Filter Sections in Dark Mode */
+[data-theme="dark"] .filter-section,
+[data-theme="dark"] .filters-container,
+[data-theme="dark"] [class*="filter"] {
+    background: #2d3748 !important;
+    background-color: #2d3748 !important;
+    border: 1px solid #4a5568 !important;
+}
+
+/* ============================================
+   FORMS & INPUTS - HIGH CONTRAST
+   ============================================ */
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select,
+[data-theme="dark"] .form-control,
+[data-theme="dark"] .form-select,
+[data-theme="dark"] input[type="text"],
+[data-theme="dark"] input[type="email"],
+[data-theme="dark"] input[type="password"],
+[data-theme="dark"] input[type="number"],
+[data-theme="dark"] input[type="search"],
+[data-theme="dark"] input[type="tel"],
+[data-theme="dark"] input[type="url"],
+[data-theme="dark"] input[type="date"],
+[data-theme="dark"] input[type="datetime-local"],
+[data-theme="dark"] input[type="time"] {
+    background-color: #374151 !important;
+    border-color: #4a5568 !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder,
+[data-theme="dark"] select::placeholder,
+[data-theme="dark"] .form-control::placeholder {
+    color: #9ca3af !important;
+    opacity: 0.8 !important;
+}
+
+[data-theme="dark"] input:focus,
+[data-theme="dark"] textarea:focus,
+[data-theme="dark"] select:focus,
+[data-theme="dark"] .form-control:focus,
+[data-theme="dark"] .form-select:focus {
+    background-color: #374151 !important;
+    border-color: #60a5fa !important;
+    color: #f7fafc !important;
+    box-shadow: 0 0 0 0.2rem rgba(96, 165, 250, 0.25) !important;
+}
+
+[data-theme="dark"] label,
+[data-theme="dark"] .form-label {
+    color: #f7fafc !important;
+    font-weight: 500 !important;
+}
+
+/* Input groups */
+[data-theme="dark"] .input-group-text {
+    background-color: #374151 !important;
+    border-color: #4a5568 !important;
+    color: #f7fafc !important;
+}
+
+/* ============================================
+   BUTTONS - PROPER CONTRAST & VISIBILITY
+   ============================================ */
+[data-theme="dark"] .btn-primary {
+    background-color: #3b82f6 !important;
+    border-color: #3b82f6 !important;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .btn-primary:hover,
+[data-theme="dark"] .btn-primary:focus {
+    background-color: #2563eb !important;
+    border-color: #2563eb !important;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .btn-secondary {
+    background-color: #6b7280 !important;
+    border-color: #6b7280 !important;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .btn-secondary:hover,
+[data-theme="dark"] .btn-secondary:focus {
+    background-color: #4b5563 !important;
+    border-color: #4b5563 !important;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .btn-success {
+    background-color: #10b981 !important;
+    border-color: #10b981 !important;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .btn-danger {
+    background-color: #ef4444 !important;
+    border-color: #ef4444 !important;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .btn-warning {
+    background-color: #f59e0b !important;
+    border-color: #f59e0b !important;
+    color: #000000 !important;
+}
+
+[data-theme="dark"] .btn-info {
+    background-color: #3b82f6 !important;
+    border-color: #3b82f6 !important;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .btn-light {
+    background-color: #374151 !important;
+    border-color: #4a5568 !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .btn-dark {
+    background-color: #1f2937 !important;
+    border-color: #1f2937 !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .btn-outline-primary {
+    border-color: #3b82f6 !important;
+    color: #3b82f6 !important;
+}
+
+[data-theme="dark"] .btn-outline-primary:hover {
+    background-color: #3b82f6 !important;
+    color: #ffffff !important;
+}
+
+/* ============================================
+   BADGES & STATUS INDICATORS
+   ============================================ */
+[data-theme="dark"] .badge {
+    border: 1px solid #4a5568;
+}
+
+[data-theme="dark"] .badge-primary {
+    background-color: #3b82f6 !important;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .badge-success,
+[data-theme="dark"] .badge-available,
+[data-theme="dark"] .status-available,
+[data-theme="dark"] .bg-success {
+    background-color: #10b981 !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+}
+
+[data-theme="dark"] .badge-warning,
+[data-theme="dark"] .badge-low-stock,
+[data-theme="dark"] .status-low,
+[data-theme="dark"] .bg-warning {
+    background-color: #f59e0b !important;
+    color: #000000 !important;
+    font-weight: 600 !important;
+}
+
+[data-theme="dark"] .badge-danger,
+[data-theme="dark"] .badge-out-of-stock,
+[data-theme="dark"] .status-out,
+[data-theme="dark"] .bg-danger {
+    background-color: #ef4444 !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+}
+
+/* Notification badges should remain visible */
+[data-theme="dark"] .notification-badge {
+    background-color: #ef4444 !important;
+    color: #ffffff !important;
+}
+
+/* ============================================
+   TEXT & TYPOGRAPHY - MAXIMUM VISIBILITY
+   ============================================ */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6 {
+    color: #f7fafc !important;
+    font-weight: 600 !important;
+}
+
+[data-theme="dark"] p,
+[data-theme="dark"] span:not(.badge):not(.notification-badge):not(.btn),
+[data-theme="dark"] div:not(.btn):not(.badge):not(.card):not(.modal),
+[data-theme="dark"] li,
+[data-theme="dark"] a:not(.btn) {
+    color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] strong,
+[data-theme="dark"] b {
+    color: #f7fafc !important;
+    font-weight: 700 !important;
+}
+
+[data-theme="dark"] small,
+[data-theme="dark"] .small {
+    color: #cbd5e0 !important;
+}
+
+/* Empty state / No data messages */
+[data-theme="dark"] .no-data,
+[data-theme="dark"] .empty-state,
+[data-theme="dark"] [class*="no-"],
+[data-theme="dark"] [class*="empty"] {
+    color: #cbd5e0 !important;
+}
+
+/* Ensure all text in tables is visible */
+[data-theme="dark"] .table,
+[data-theme="dark"] .table *,
+[data-theme="dark"] table,
+[data-theme="dark"] table * {
+    color: #f7fafc !important;
+}
+
+/* ============================================
+   MODALS - DARK THEMED
+   ============================================ */
+[data-theme="dark"] .modal-content {
+    background-color: #2d3748 !important;
+    border-color: #4a5568 !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .modal-header {
+    background-color: #1a202c !important;
+    border-bottom-color: #4a5568 !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .modal-title {
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .modal-body {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .modal-footer {
+    background-color: #2d3748 !important;
+    border-top-color: #4a5568 !important;
+}
+
+[data-theme="dark"] .modal-backdrop {
+    opacity: 0.7 !important;
+}
+
+[data-theme="dark"] .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* ============================================
+   DROPDOWNS - DARK THEMED
+   ============================================ */
+[data-theme="dark"] .dropdown-menu {
+    background-color: #2d3748 !important;
+    border-color: #4a5568 !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="dark"] .dropdown-item {
+    color: #e2e8f0 !important;
+    background-color: transparent !important;
+}
+
+[data-theme="dark"] .dropdown-item:hover,
+[data-theme="dark"] .dropdown-item:focus {
+    background-color: #374151 !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .dropdown-item.active,
+[data-theme="dark"] .dropdown-item:active {
+    background-color: #3b82f6 !important;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .dropdown-divider {
+    border-top-color: #4a5568 !important;
+}
+
+[data-theme="dark"] .dropdown-header {
+    color: #9ca3af !important;
+}
+
+/* ============================================
+   LIST GROUPS
+   ============================================ */
+[data-theme="dark"] .list-group-item {
+    background-color: #2d3748 !important;
+    border-color: #4a5568 !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .list-group-item:hover {
+    background-color: #374151 !important;
+}
+
+[data-theme="dark"] .list-group-item.active {
+    background-color: #3b82f6 !important;
+    border-color: #3b82f6 !important;
+}
+
+/* ============================================
+   ALERTS & NOTIFICATIONS
+   ============================================ */
+[data-theme="dark"] .alert {
+    border-color: #4a5568 !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .alert-primary {
+    background-color: #1e3a8a !important;
+    border-color: #3b82f6 !important;
+    color: #dbeafe !important;
+}
+
+[data-theme="dark"] .alert-success {
+    background-color: #064e3b !important;
+    border-color: #10b981 !important;
+    color: #d1fae5 !important;
+}
+
+[data-theme="dark"] .alert-warning {
+    background-color: #78350f !important;
+    border-color: #f59e0b !important;
+    color: #fef3c7 !important;
+}
+
+[data-theme="dark"] .alert-danger {
+    background-color: #7f1d1d !important;
+    border-color: #ef4444 !important;
+    color: #fee2e2 !important;
+}
+
+[data-theme="dark"] .alert-info {
+    background-color: #164e63 !important;
+    border-color: #06b6d4 !important;
+    color: #cffafe !important;
+}
+
+/* ============================================
+   NAVIGATION & BREADCRUMBS
+   ============================================ */
+[data-theme="dark"] .nav-tabs {
+    border-bottom-color: #4a5568 !important;
+}
+
+[data-theme="dark"] .nav-tabs .nav-link {
+    color: #9ca3af !important;
+    border-color: transparent !important;
+}
+
+[data-theme="dark"] .nav-tabs .nav-link:hover {
+    color: #f7fafc !important;
+    border-color: #4a5568 #4a5568 transparent !important;
+}
+
+[data-theme="dark"] .nav-tabs .nav-link.active {
+    background-color: #2d3748 !important;
+    border-color: #4a5568 #4a5568 #2d3748 !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .breadcrumb {
+    background-color: #2d3748 !important;
+}
+
+[data-theme="dark"] .breadcrumb-item,
+[data-theme="dark"] .breadcrumb-item a {
+    color: #9ca3af !important;
+}
+
+[data-theme="dark"] .breadcrumb-item.active {
+    color: #f7fafc !important;
+}
+
+/* ============================================
+   PAGINATION
+   ============================================ */
+[data-theme="dark"] .pagination {
+    margin: 0;
+}
+
+[data-theme="dark"] .page-link {
+    background-color: #2d3748 !important;
+    border-color: #4a5568 !important;
+    color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .page-link:hover {
+    background-color: #374151 !important;
+    border-color: #4a5568 !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .page-item.active .page-link {
+    background-color: #3b82f6 !important;
+    border-color: #3b82f6 !important;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .page-item.disabled .page-link {
+    background-color: #1a202c !important;
+    border-color: #4a5568 !important;
+    color: #6b7280 !important;
+}
+
+/* ============================================
+   ICONS & SPECIAL ELEMENTS
+   ============================================ */
+[data-theme="dark"] i,
+[data-theme="dark"] .fa,
+[data-theme="dark"] .fas,
+[data-theme="dark"] .far,
+[data-theme="dark"] .fab {
+    color: inherit;
+}
+
+/* Ensure icons in buttons/badges keep their context */
+[data-theme="dark"] .btn i,
+[data-theme="dark"] .badge i {
+    color: inherit !important;
+}
+
+/* ============================================
+   SCROLLBARS (WEBKIT)
+   ============================================ */
+[data-theme="dark"] ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-track {
+    background: #1a202c;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+    background: #4a5568;
+    border-radius: 5px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+}
+
+/* ============================================
+   SHADOWS & ELEVATION
+   ============================================ */
+[data-theme="dark"] .shadow {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="dark"] .shadow-sm {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.4) !important;
+}
+
+[data-theme="dark"] .shadow-lg {
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.6) !important;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - NO FLICKER
+   ============================================ */
+@media (max-width: 768px) {
+    [data-theme="dark"] .sidebar {
+        background-color: #1a202c !important;
+    }
+    
+    [data-theme="dark"] .main-content {
+        padding: 1rem;
+    }
+}
+
+/* ============================================
+   PRINT STYLES - MAINTAIN READABILITY
+   ============================================ */
+@media print {
+    [data-theme="dark"] body,
+    [data-theme="dark"] .card,
+    [data-theme="dark"] .table {
+        background-color: white !important;
+        color: black !important;
+    }
+}
+
+/* ============================================
+   TOASTS & POPUPS
+   ============================================ */
+[data-theme="dark"] .toast {
+    background-color: #2d3748 !important;
+    border-color: #4a5568 !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .toast-header {
+    background-color: #1a202c !important;
+    border-bottom-color: #4a5568 !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .toast-body {
+    color: #e2e8f0 !important;
+}
+
+/* ============================================
+   TOOLTIPS & POPOVERS
+   ============================================ */
+[data-theme="dark"] .tooltip-inner {
+    background-color: #1a202c !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .popover {
+    background-color: #2d3748 !important;
+    border-color: #4a5568 !important;
+}
+
+[data-theme="dark"] .popover-header {
+    background-color: #1a202c !important;
+    border-bottom-color: #4a5568 !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .popover-body {
+    color: #e2e8f0 !important;
+}
+
+/* ============================================
+   PROGRESS BARS
+   ============================================ */
+[data-theme="dark"] .progress {
+    background-color: #374151 !important;
+}
+
+[data-theme="dark"] .progress-bar {
+    background-color: #3b82f6 !important;
+}
+
+/* ============================================
+   ACCORDION
+   ============================================ */
+[data-theme="dark"] .accordion-item {
+    background-color: #2d3748 !important;
+    border-color: #4a5568 !important;
+}
+
+[data-theme="dark"] .accordion-header button {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .accordion-button:not(.collapsed) {
+    background-color: #374151 !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .accordion-body {
+    background-color: #2d3748 !important;
+    color: #e2e8f0 !important;
+}
+
+/* ============================================
+   FINAL OVERRIDES - INLINE STYLES & WHITE FIXES
+   ============================================ */
+[data-theme="dark"] [style*="background: #fff"],
+[data-theme="dark"] [style*="background-color: #fff"],
+[data-theme="dark"] [style*="background: white"],
+[data-theme="dark"] [style*="background-color: white"],
+[data-theme="dark"] [style*="background-color: #ffffff"],
+[data-theme="dark"] [style*="background-color:#ffffff"],
+[data-theme="dark"] [style*="background:#ffffff"] {
+    background-color: #2d3748 !important;
+}
+
+[data-theme="dark"] [style*="color: #000"],
+[data-theme="dark"] [style*="color: black"],
+[data-theme="dark"] [style*="color:#000"],
+[data-theme="dark"] [style*="color:black"] {
+    color: #f7fafc !important;
+}
+
+/* Fix pagination showing entries text */
+[data-theme="dark"] .dataTables_info,
+[data-theme="dark"] .showing-entries,
+[data-theme="dark"] [class*="showing"],
+[data-theme="dark"] [class*="Showing"] {
+    color: #cbd5e0 !important;
+}
+
+/* Fix for any remaining white containers */
+[data-theme="dark"] .white,
+[data-theme="dark"] .bg-white,
+[data-theme="dark"] .bg-light,
+[data-theme="dark"] [class*="white"],
+[data-theme="dark"] [class*="light-bg"] {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+}
+
+/* ============================================
+   NUCLEAR OPTION - FORCE ALL WHITE TO DARK
+   ============================================ */
+/* Target every possible white background element */
+[data-theme="dark"] table tbody,
+[data-theme="dark"] table thead,
+[data-theme="dark"] table tfoot,
+[data-theme="dark"] tbody,
+[data-theme="dark"] thead,
+[data-theme="dark"] tfoot {
+    background-color: #2d3748 !important;
+}
+
+/* Override any computed white backgrounds */
+[data-theme="dark"] *[style*="255"] {
+    background-color: #2d3748 !important;
+}
+
+/* Catch bootstrap table styles */
+[data-theme="dark"] .table-light,
+[data-theme="dark"] .table-white,
+[data-theme="dark"] .bg-white,
+[data-theme="dark"] .bg-light {
+    background-color: #2d3748 !important;
+}
+
+/* Dark mode switch toggle */
+.form-switch .form-check-input {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba(0, 0, 0, 0.25)'/%3e%3c/svg%3e");
+}
+
+[data-theme="dark"] .form-switch .form-check-input {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+    background-color: #3b82f6 !important;
+}
+
+[data-theme="dark"] .form-check-input:checked {
+    background-color: #3b82f6 !important;
+    border-color: #3b82f6 !important;
+}
+
+/* ============================================
+   SPECIFIC FIX: WHITE AREAS IN COMPONENTS
+   ============================================ */
+
+/* Unit badges and pills in dashboard */
+[data-theme="dark"] .unit-badge,
+[data-theme="dark"] .badge-unit,
+[data-theme="dark"] .pill-unit,
+[data-theme="dark"] [class*="unit-"] {
+    background-color: #374151 !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+}
+
+/* Request Details Modal - Fix white backgrounds */
+[data-theme="dark"] .modal-title,
+[data-theme="dark"] #viewModalLabel,
+[data-theme="dark"] [id*="viewModal"] {
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .modal-body .text-muted,
+[data-theme="dark"] .text-muted.fst-italic,
+[data-theme="dark"] .remarks-section,
+[data-theme="dark"] [class*="remarks"] {
+    color: #9ca3af !important;
+}
+
+/* Fix white text areas in modals */
+[data-theme="dark"] textarea.form-control,
+[data-theme="dark"] .modal textarea {
+    background-color: #374151 !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+}
+
+[data-theme="dark"] textarea::placeholder {
+    color: #9ca3af !important;
+}
+
+/* Smart Filters section in Reports */
+[data-theme="dark"] .smart-filters,
+[data-theme="dark"] .filter-section,
+[data-theme="dark"] .filters-container,
+[data-theme="dark"] [class*="filter"] {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .filter-section h4,
+[data-theme="dark"] .smart-filters h4 {
+    color: #f7fafc !important;
+}
+
+/* Filter buttons */
+[data-theme="dark"] .filter-btn,
+[data-theme="dark"] .btn-filter,
+[data-theme="dark"] [class*="filter-btn"] {
+    background-color: #374151 !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+}
+
+[data-theme="dark"] .filter-btn:hover {
+    background-color: #4b5563 !important;
+}
+
+[data-theme="dark"] .filter-btn.active {
+    background-color: #7f1d1d !important;
+    border-color: #991b1b !important;
+    color: #ffffff !important;
+}
+
+/* Help & Support Center - Fix white cards */
+[data-theme="dark"] .help-card,
+[data-theme="dark"] .support-card,
+[data-theme="dark"] .faq-card,
+[data-theme="dark"] .info-card,
+[data-theme="dark"] [class*="help-"],
+[data-theme="dark"] [class*="support-"] {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+}
+
+[data-theme="dark"] .help-card .card-body,
+[data-theme="dark"] .support-card .card-body {
+    background-color: #2d3748 !important;
+    color: #e2e8f0 !important;
+}
+
+/* FAQ sections */
+[data-theme="dark"] .faq-item,
+[data-theme="dark"] .faq-question,
+[data-theme="dark"] .faq-answer {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+}
+
+/* Search boxes in help/support */
+[data-theme="dark"] .help-search,
+[data-theme="dark"] .support-search,
+[data-theme="dark"] input.search-input {
+    background-color: #374151 !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+}
+
+/* Notification cards and items */
+[data-theme="dark"] .notification-item,
+[data-theme="dark"] .notification-card,
+[data-theme="dark"] .notif-item,
+[data-theme="dark"] [class*="notification-"] {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+}
+
+[data-theme="dark"] .notification-item:hover {
+    background-color: #374151 !important;
+}
+
+[data-theme="dark"] .notification-header {
+    background-color: #1a202c !important;
+    color: #f7fafc !important;
+}
+
+/* Batch details and request info boxes */
+[data-theme="dark"] .batch-info,
+[data-theme="dark"] .request-info,
+[data-theme="dark"] .info-box,
+[data-theme="dark"] .details-box,
+[data-theme="dark"] [class*="info-"],
+[data-theme="dark"] [class*="details-"] {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+}
+
+/* Status displays */
+[data-theme="dark"] .status-display,
+[data-theme="dark"] .status-info,
+[data-theme="dark"] [class*="status-display"] {
+    background-color: #374151 !important;
+    color: #f7fafc !important;
+}
+
+/* Tab navigation */
+[data-theme="dark"] .tab-content,
+[data-theme="dark"] .tab-pane {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+}
+
+/* White boxes/containers that might appear */
+[data-theme="dark"] .white-box,
+[data-theme="dark"] .info-container,
+[data-theme="dark"] .content-box,
+[data-theme="dark"] .details-container {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+}
+
+/* Fix for any remaining white backgrounds */
+[data-theme="dark"] .bg-white,
+[data-theme="dark"] .bg-light {
+    background-color: #2d3748 !important;
+}
+
+[data-theme="dark"] .text-dark {
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .text-black {
+    color: #f7fafc !important;
+}
+
+/* Office/Department labels */
+[data-theme="dark"] .office-label,
+[data-theme="dark"] .department-label,
+[data-theme="dark"] .office-badge {
+    background-color: #374151 !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+}
+
+/* Request metadata */
+[data-theme="dark"] .request-meta,
+[data-theme="dark"] .request-metadata,
+[data-theme="dark"] .meta-info {
+    background-color: #1a202c !important;
+    color: #e2e8f0 !important;
+    border-color: #4a5568 !important;
+}
+
+/* Pills and tags */
+[data-theme="dark"] .pill,
+[data-theme="dark"] .tag,
+[data-theme="dark"] .label-tag {
+    background-color: #374151 !important;
+    color: #f7fafc !important;
+    border: 1px solid #4a5568 !important;
+}
+
+/* Data display boxes */
+[data-theme="dark"] .data-box,
+[data-theme="dark"] .stat-box,
+[data-theme="dark"] .metric-box {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+}
+
+/* Header sections in pages */
+[data-theme="dark"] .page-title,
+[data-theme="dark"] .section-title,
+[data-theme="dark"] .content-title {
+    color: #f7fafc !important;
+}
+
+/* Action buttons in modals/forms */
+[data-theme="dark"] .action-buttons .btn,
+[data-theme="dark"] .modal-footer .btn {
+    border-color: #4a5568 !important;
+}
+
+/* Dividers and separators */
+[data-theme="dark"] hr,
+[data-theme="dark"] .divider,
+[data-theme="dark"] .separator {
+    border-color: #4a5568 !important;
+    opacity: 0.5;
+}
+
+/* Code blocks or pre-formatted text */
+[data-theme="dark"] pre,
+[data-theme="dark"] code {
+    background-color: #1a202c !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+}
+
+/* Wells or highlighted sections */
+[data-theme="dark"] .well,
+[data-theme="dark"] .highlight-box,
+[data-theme="dark"] .note-box {
+    background-color: #374151 !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+}
+
+/* ============================================
+   PAGE-SPECIFIC FIXES
+   ============================================ */
+
+/* Print RIS Page - Fix white backgrounds on print view */
+[data-theme="dark"] .container {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .header-info,
+[data-theme="dark"] .main-title,
+[data-theme="dark"] .entity-info,
+[data-theme="dark"] .info-row,
+[data-theme="dark"] .info-col,
+[data-theme="dark"] .info-label {
+    background-color: transparent !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .batch-header {
+    background-color: #374151 !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .additional-item {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .nothing-follows {
+    background-color: #1a202c !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .purpose,
+[data-theme="dark"] .signatures,
+[data-theme="dark"] .signature-box,
+[data-theme="dark"] .signature-line {
+    background-color: transparent !important;
+    color: #f7fafc !important;
+}
+
+/* Help & Support Page - Fix accordion items and content */
+[data-theme="dark"] .accordion,
+[data-theme="dark"] .accordion-item,
+[data-theme="dark"] .accordion-header,
+[data-theme="dark"] .accordion-button,
+[data-theme="dark"] .accordion-body {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+}
+
+[data-theme="dark"] .accordion-button:not(.collapsed) {
+    background-color: #374151 !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .accordion-collapse {
+    background-color: #2d3748 !important;
+}
+
+[data-theme="dark"] .tab-content,
+[data-theme="dark"] .tab-pane {
+    background-color: #1a202c !important;
+    color: #f7fafc !important;
+}
+
+/* Reports Page - Fix filter sections and time presets */
+[data-theme="dark"] .time-presets,
+[data-theme="dark"] .preset-buttons,
+[data-theme="dark"] .custom-date-range,
+[data-theme="dark"] .date-inputs,
+[data-theme="dark"] .date-group,
+[data-theme="dark"] .context-filters,
+[data-theme="dark"] .filter-grid,
+[data-theme="dark"] .filter-group {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .preset-btn {
+    background-color: #374151 !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+}
+
+[data-theme="dark"] .preset-btn:hover {
+    background-color: #4b5563 !important;
+}
+
+[data-theme="dark"] .preset-btn.active {
+    background-color: #7f1d1d !important;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .smart-select,
+[data-theme="dark"] .modern-input {
+    background-color: #374151 !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+}
+
+[data-theme="dark"] .smart-select option {
+    background-color: #374151 !important;
+    color: #f7fafc !important;
+}
+
+/* User Management Page - Fix content wrapper and action areas */
+[data-theme="dark"] .content-wrapper {
+    background-color: #1a202c !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .action-bar,
+[data-theme="dark"] .btn-group {
+    background-color: transparent !important;
+}
+
+[data-theme="dark"] .user-table-container,
+[data-theme="dark"] .users-table-wrapper {
+    background-color: #2d3748 !important;
+}
+
+/* User Management - More specific fixes */
+[data-theme="dark"] .user-management-section,
+[data-theme="dark"] .management-wrapper {
+    background-color: #2d3748 !important;
+}
+
+/* Fix the blue-gray header box */
+[data-theme="dark"] .user-management-header,
+[data-theme="dark"] .management-header,
+[data-theme="dark"] div[style*="background-color: #3b4c5c"],
+[data-theme="dark"] div[style*="background: #3b4c5c"] {
+    background-color: #2d3748 !important;
+}
+
+/* Fix container-fluid in User Management */
+[data-theme="dark"] .container-fluid {
+    background-color: transparent !important;
+}
+
+/* Fix dashboard-header inside container-fluid */
+[data-theme="dark"] .container-fluid .dashboard-header,
+[data-theme="dark"] .container-fluid .modern-header {
+    background: linear-gradient(135deg, #800020, #600018) !important;
+    background-color: #800020 !important;
+}
+
+/* Fix header-content */
+[data-theme="dark"] .header-content {
+    background: transparent !important;
+    color: white !important;
+}
+
+/* Fix header class specifically */
+[data-theme="dark"] .header {
+    background-color: transparent !important;
+}
+
+/* Fix header h2 */
+[data-theme="dark"] .header h2 {
+    color: #ffffff !important;
+    background-color: transparent !important;
+}
+
+/* Fix action-bar background */
+[data-theme="dark"] .action-bar {
+    background-color: transparent !important;
+}
+
+/* Fix table-responsive container */
+[data-theme="dark"] .table-responsive {
+    background-color: transparent !important;
+}
+
+/* Fix pagination info and wrapper */
+[data-theme="dark"] .pagination-info {
+    background-color: transparent !important;
+    color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .d-flex.justify-content-between,
+[data-theme="dark"] .d-flex.justify-content-center {
+    background-color: transparent !important;
+}
+
+/* Fix any sections with rounded corners */
+[data-theme="dark"] .rounded-3,
+[data-theme="dark"] .rounded-4 {
+    background-color: #2d3748 !important;
+}
+
+/* Fix margin/padding containers */
+[data-theme="dark"] .mt-4,
+[data-theme="dark"] .my-4,
+[data-theme="dark"] .p-4,
+[data-theme="dark"] .py-4,
+[data-theme="dark"] .mt-3,
+[data-theme="dark"] .mb-3 {
+    background-color: transparent !important;
+}
+
+/* Fix any remaining white areas in all pages */
+[data-theme="dark"] .page-wrapper,
+[data-theme="dark"] .page-container,
+[data-theme="dark"] .main-container,
+[data-theme="dark"] .content-container {
+    background-color: #1a202c !important;
+    color: #f7fafc !important;
+}
+
+/* AGGRESSIVE FIX - Remove all white backgrounds */
+[data-theme="dark"] body > *:not(.sidebar):not(script):not(style) {
+    background-color: transparent !important;
+}
+
+/* Fix wrapper elements around sidebar */
+[data-theme="dark"] .wrapper,
+[data-theme="dark"] .page-wrapper,
+[data-theme="dark"] .content-wrapper-outer,
+[data-theme="dark"] .main-wrapper-outer {
+    background-color: #1a202c !important;
+}
+
+/* Fix areas beside sidebar */
+[data-theme="dark"] .sidebar ~ *,
+[data-theme="dark"] .sidebar + * {
+    background-color: transparent !important;
+}
+
+/* Ensure no white space around main content */
+[data-theme="dark"] html,
+[data-theme="dark"] body,
+[data-theme="dark"] #app,
+[data-theme="dark"] .app-wrapper {
+    background-color: #1a202c !important;
+    min-height: 100vh !important;
+    width: 100% !important;
+}
+
+/* Fix left and right margins/paddings that might show white */
+[data-theme="dark"] * {
+    border-color: #4a5568 !important;
+}
+
+[data-theme="dark"] *:not(.bg-primary):not(.bg-danger):not(.bg-warning):not(.bg-success):not(.bg-info):not(.badge):not(.btn):not(.alert) {
+    background-image: none !important;
+}
+
+/* ============================================
+   NUCLEAR DARK MODE - GLOBAL ENFORCEMENT
+   ============================================ */
+
+/* Remove box shadows in dark mode for cleaner look */
+[data-theme="dark"] *:not(.card):not(.modal):not(.dropdown-menu) {
+    box-shadow: none !important;
+}
+
+/* Force transparent backgrounds on most elements */
+[data-theme="dark"] *:not(.table):not(.card):not(.modal-content):not(.dropdown-menu):not(.btn):not(.badge):not(.alert):not(.sidebar):not(.header):not(.navbar):not(.stat-card):not(.action-card):not(.quick-nav-card) {
+    background-color: transparent !important;
+}
+
+/* Ensure viewport is fully covered */
+[data-theme="dark"] html {
+    width: 100% !important;
+    min-height: 100vh !important;
+    overflow-x: hidden !important;
+    background-color: #1a202c !important;
+}
+
+[data-theme="dark"] body {
+    width: 100% !important;
+    min-height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+    background-color: #1a202c !important;
+}
+
+/* ============================================
+   PERSISTENT DARK MODE - ALL PAGES
+   ============================================ */
+
+/* Ensure dark mode persists across navigation */
+[data-theme="dark"] body,
+[data-theme="dark"] body *,
+[data-theme="dark"] main,
+[data-theme="dark"] main *,
+[data-theme="dark"] .page-content,
+[data-theme="dark"] .page-content * {
+    color: inherit !important;
+}
+
+/* Force dark backgrounds on all page types */
+[data-theme="dark"] .dashboard-page,
+[data-theme="dark"] .orders-page,
+[data-theme="dark"] .pending-page,
+[data-theme="dark"] .approved-page,
+[data-theme="dark"] .released-page,
+[data-theme="dark"] .disapproved-page,
+[data-theme="dark"] .reports-page,
+[data-theme="dark"] .help-page,
+[data-theme="dark"] .user-management-page,
+[data-theme="dark"] .notifications-page {
+    background-color: #1a202c !important;
+    color: #f7fafc !important;
+}
+
+/* Fix ANY remaining white containers */
+[data-theme="dark"] div:not(.btn):not(.badge):not(.alert),
+[data-theme="dark"] section:not(.sidebar),
+[data-theme="dark"] article,
+[data-theme="dark"] main {
+    background-image: none !important;
+}
+
+/* Ensure text stays light in dark mode */
+[data-theme="dark"] p,
+[data-theme="dark"] span:not(.badge),
+[data-theme="dark"] h1, [data-theme="dark"] h2, [data-theme="dark"] h3,
+[data-theme="dark"] h4, [data-theme="dark"] h5, [data-theme="dark"] h6,
+[data-theme="dark"] label,
+[data-theme="dark"] td,
+[data-theme="dark"] th {
+    color: #f7fafc !important;
+}
+
+/* Fix Bootstrap container that might be causing white sides */
+[data-theme="dark"] .container {
+    background-color: transparent !important;
+}
+
+[data-theme="dark"] body > .container {
+    background-color: transparent !important;
+}
+
+/* ============================================
+   ORDERS PAGES FIX - ALL STATUSES
+   ============================================ */
+
+/* Fix all order pages - Pending, Approved, Released, Disapproved */
+[data-theme="dark"] .requests-page,
+[data-theme="dark"] .pending-page,
+[data-theme="dark"] .approved-page,
+[data-theme="dark"] .released-page,
+[data-theme="dark"] .disapproved-page {
+    background-color: #1a202c !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* Fix headers on Orders pages to not overlap sidebar */
+.page-header,
+.requests-header,
+.pending-header,
+h1.page-title,
+h2.page-title,
+.welcome-header {
+    margin-left: 0 !important;
+    padding-left: 20px !important;
+}
+
+/* For light mode headers */
+.page-header,
+.requests-header {
+    margin-left: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Ensure all content in Orders pages respects sidebar */
+.pending-requests,
+.approved-requests,
+.released-requests,
+.disapproved-requests {
+    margin-left: 0 !important;
+    width: 100% !important;
+}
+
+/* Fix search bar and filters container */
+.search-filter-container,
+.filter-section,
+.search-section {
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding: 0 20px !important;
+}
+
+/* Fix table container */
+.table-responsive,
+.data-table-container {
+    margin-left: 0 !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+}
+
+/* Fix Orders dropdown container in sidebar */
+[data-theme="dark"] .dropdown-container {
+    background-color: #2d3748 !important;
+    padding: 10px 0 !important;
+}
+
+[data-theme="dark"] .dropdown-container a {
+    background-color: transparent !important;
+    color: #f7fafc !important;
+    padding: 10px 15px !important;
+    display: block !important;
+}
+
+[data-theme="dark"] .dropdown-container a:hover {
+    background-color: #374151 !important;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .dropdown-btn {
+    background-color: transparent !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .dropdown-btn:hover {
+    background-color: #2d3748 !important;
+}
+
+[data-theme="dark"] .dropdown-btn.active {
+    background-color: #2d3748 !important;
+}
+
+/* Fix sidebar Orders menu items */
+[data-theme="dark"] .sidebar a {
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .sidebar .dropdown-container a {
+    padding-left: 40px !important;
+    background-color: transparent !important;
+}
+
+[data-theme="dark"] .sidebar .dropdown-container a:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Fix search and filter containers */
+[data-theme="dark"] .search-container,
+[data-theme="dark"] .filter-container,
+[data-theme="dark"] .search-bar,
+[data-theme="dark"] .filter-bar {
+    background-color: transparent !important;
+}
+
+/* Fix request table containers */
+[data-theme="dark"] .requests-table,
+[data-theme="dark"] .table-container,
+[data-theme="dark"] .data-table-wrapper {
+    background-color: transparent !important;
+    width: 100% !important;
+}
+
+/* Fix sortable headers */
+[data-theme="dark"] .sortable-header,
+[data-theme="dark"] th[onclick],
+[data-theme="dark"] .sort-header {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+}
+
+/* Fix dropdown in Orders pages */
+[data-theme="dark"] .office-filter,
+[data-theme="dark"] .status-filter,
+[data-theme="dark"] select.form-select,
+[data-theme="dark"] select.form-control {
+    background-color: #374151 !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+}
+
+/* Fix "No data" states */
+[data-theme="dark"] .no-data,
+[data-theme="dark"] .empty-state,
+[data-theme="dark"] .no-results {
+    background-color: transparent !important;
+    color: #e2e8f0 !important;
+}
+
+/* Fix pagination in Orders pages */
+[data-theme="dark"] .pagination,
+[data-theme="dark"] .page-navigation {
+    background-color: transparent !important;
+}
+
+/* Fix Orders sidebar conflict */
+[data-theme="dark"] .sidebar + .orders-content,
+[data-theme="dark"] .sidebar + .requests-content,
+[data-theme="dark"] .sidebar ~ .orders-wrapper {
+    background-color: transparent !important;
+    margin-left: 0 !important;
+}
+
+/* Fix white divs and sections */
+[data-theme="dark"] div[style*="background: white"],
+[data-theme="dark"] div[style*="background-color: white"],
+[data-theme="dark"] div[style*="background:#fff"],
+[data-theme="dark"] div[style*="background-color:#fff"] {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+}
+
+/* ============================================
+   AGGRESSIVE FIXES FOR REMAINING WHITE AREAS
+   ============================================ */
+
+/* Edit RIS Page - Fix white stat cards */
+[data-theme="dark"] .stats-dashboard {
+    background-color: transparent !important;
+}
+
+[data-theme="dark"] .stat-card {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+}
+
+[data-theme="dark"] .stat-card .stat-icon,
+[data-theme="dark"] .stat-card .stat-content,
+[data-theme="dark"] .stat-card h3,
+[data-theme="dark"] .stat-card p {
+    background-color: transparent !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .info-card,
+[data-theme="dark"] .summary-card,
+[data-theme="dark"] .metric-card {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+}
+
+[data-theme="dark"] .stat-card *,
+[data-theme="dark"] .info-card *,
+[data-theme="dark"] .summary-card *,
+[data-theme="dark"] .metric-card * {
+    color: #f7fafc !important;
+}
+
+/* Reports Page - Fix white boxes in archived items and filter results */
+[data-theme="dark"] .management-section {
+    background-color: transparent !important;
+}
+
+[data-theme="dark"] .management-grid {
+    background-color: transparent !important;
+}
+
+[data-theme="dark"] .action-card {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+}
+
+[data-theme="dark"] .action-card.archive,
+[data-theme="dark"] .action-card.warning {
+    background-color: #2d3748 !important;
+}
+
+[data-theme="dark"] .action-card .card-icon,
+[data-theme="dark"] .action-card .card-content,
+[data-theme="dark"] .action-card h5,
+[data-theme="dark"] .action-card p {
+    background-color: transparent !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .archived-items,
+[data-theme="dark"] .archive-box,
+[data-theme="dark"] .archive-container {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .archive-filtered-results,
+[data-theme="dark"] .filtered-results-box {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+}
+
+/* Help & Support - Fix white cards at top */
+[data-theme="dark"] .quick-nav-section {
+    background-color: transparent !important;
+}
+
+[data-theme="dark"] .quick-nav-card {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+}
+
+[data-theme="dark"] .quick-nav-card i,
+[data-theme="dark"] .quick-nav-card h4,
+[data-theme="dark"] .quick-nav-card p {
+    background-color: transparent !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .quick-nav-card:hover {
+    background-color: #374151 !important;
+}
+
+[data-theme="dark"] .help-section-card,
+[data-theme="dark"] .support-section-card,
+[data-theme="dark"] .quick-help-card {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+}
+
+[data-theme="dark"] .help-section-card *,
+[data-theme="dark"] .support-section-card *,
+[data-theme="dark"] .quick-help-card * {
+    color: #f7fafc !important;
+}
+
+/* User Management - Fix table area background */
+[data-theme="dark"] .user-management-table,
+[data-theme="dark"] .users-table-section,
+[data-theme="dark"] .table-section {
+    background-color: #1a202c !important;
+}
+
+[data-theme="dark"] .pagination-wrapper,
+[data-theme="dark"] .table-pagination {
+    background-color: #2d3748 !important;
+}
+
+/* Fix for Admin Guide sections */
+[data-theme="dark"] .admin-guide-section,
+[data-theme="dark"] .guide-card,
+[data-theme="dark"] .tutorial-card {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+}
+
+/* Fix for Video Tutorials section */
+[data-theme="dark"] .video-tutorials,
+[data-theme="dark"] .video-section,
+[data-theme="dark"] .tutorial-section {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+}
+
+/* Notifications Page - Fix Advanced Filters section */
+[data-theme="dark"] .advanced-filters,
+[data-theme="dark"] .filters-section {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+}
+
+[data-theme="dark"] .filter-controls,
+[data-theme="dark"] .filter-inputs {
+    background-color: transparent !important;
+}
+
+/* Catch-all for any col-* Bootstrap columns */
+[data-theme="dark"] .row {
+    background-color: transparent !important;
+}
+
+[data-theme="dark"] [class*="col-"] {
+    background-color: transparent !important;
+}
+
+[data-theme="dark"] [class*="col-"] > .card,
+[data-theme="dark"] [class*="col-"] > div[class*="card"],
+[data-theme="dark"] .col-md-4 > div,
+[data-theme="dark"] .col-md-6 > div,
+[data-theme="dark"] .col-md-8 > div,
+[data-theme="dark"] .col-lg-4 > div,
+[data-theme="dark"] .col-lg-6 > div {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+}
+
+/* Fix for g-3 (gutter) classes */
+[data-theme="dark"] .g-3,
+[data-theme="dark"] .row.g-3 {
+    background-color: transparent !important;
+}
+
+/* Fix for rounded cards/boxes */
+[data-theme="dark"] .rounded,
+[data-theme="dark"] .rounded-lg,
+[data-theme="dark"] .rounded-md {
+    background-color: #2d3748 !important;
+}
+
+/* Fix for shadow boxes */
+[data-theme="dark"] .shadow,
+[data-theme="dark"] .shadow-sm,
+[data-theme="dark"] .shadow-lg {
+    background-color: #2d3748 !important;
+}
+
+/* Fix for p-* padding classes with white backgrounds */
+[data-theme="dark"] [class*="p-3"],
+[data-theme="dark"] [class*="p-4"],
+[data-theme="dark"] [class*="p-5"] {
+    background-color: transparent !important;
+}
+
+/* Bootstrap card-like divs */
+[data-theme="dark"] div.d-flex.align-items-center.justify-content-center {
+    background-color: transparent !important;
+}
+
+/* Fix specific report boxes */
+[data-theme="dark"] .report-box,
+[data-theme="dark"] .report-container,
+[data-theme="dark"] .results-box {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+}
+
+/* ============================================
+   PENDING PAGE HEADER FIX
+   ============================================ */
+
+/* Fix pending page header specifically - prevent sidebar overlap */
+.pending-requests .dashboard-header,
+.pending-page .dashboard-header,
+.pending-page .modern-header,
+.pending-page .page-header,
+.pending-requests .page-header,
+body:has(.pending-requests) .dashboard-header,
+body:has(.pending-page) .dashboard-header {
+    margin-left: 0 !important;
+    padding-left: 20px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    left: 0 !important;
+    right: 0 !important;
+}
+
+/* Fix pending page container to respect sidebar */
+.pending-requests,
+.pending-page,
+body:has(.pending-requests),
+body:has(.pending-page) {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+
+/* Ensure pending page header content doesn't overflow */
+.pending-requests .header-content,
+.pending-page .header-content,
+.pending-requests .dashboard-header > *,
+.pending-page .dashboard-header > * {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Fix pending page header title positioning */
+.pending-requests h1,
+.pending-requests h2,
+.pending-page h1,
+.pending-page h2,
+.pending-requests .page-title,
+.pending-page .page-title {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    text-align: left !important;
+}
+
+/* Fix pending page welcome text */
+.pending-requests .welcome-text,
+.pending-page .welcome-text,
+.pending-requests .header-subtitle,
+.pending-page .header-subtitle {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+
+/* Fix any wrapper around pending page header */
+.pending-requests > div,
+.pending-page > div,
+.pending-requests .container,
+.pending-page .container,
+.pending-requests .container-fluid,
+.pending-page .container-fluid {
+    margin-left: 0 !important;
+    padding-left: 20px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* Dark mode specific fixes for pending page header */
+[data-theme="dark"] .pending-requests .dashboard-header,
+[data-theme="dark"] .pending-page .dashboard-header,
+[data-theme="dark"] .pending-page .modern-header,
+[data-theme="dark"] .pending-page .page-header,
+[data-theme="dark"] body:has(.pending-requests) .dashboard-header,
+[data-theme="dark"] body:has(.pending-page) .dashboard-header {
+    background: #2d3748 !important;
+    background-color: #2d3748 !important;
+    background-image: none !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+    margin-left: 0 !important;
+    padding-left: 20px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+[data-theme="dark"] .pending-requests .header-content h2,
+[data-theme="dark"] .pending-page .header-content h2,
+[data-theme="dark"] .pending-requests .welcome-text,
+[data-theme="dark"] .pending-page .welcome-text {
+    color: #f7fafc !important;
+    background-color: transparent !important;
+}
+
+/* Light mode specific fixes for pending page header */
+.pending-requests .dashboard-header,
+.pending-page .dashboard-header,
+body:has(.pending-requests) .dashboard-header {
+    background: linear-gradient(135deg, #800020, #600018) !important;
+    color: #ffffff !important;
+    margin-left: 0 !important;
+    padding-left: 20px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.pending-requests .header-content h2,
+.pending-page .header-content h2,
+.pending-requests .welcome-text,
+.pending-page .welcome-text {
+    color: #ffffff !important;
+    background-color: transparent !important;
+}
+
+/* Force header to stay within content area */
+.pending-requests .dashboard-header::before,
+.pending-page .dashboard-header::before {
+    content: none !important;
+}
+
+.pending-requests .dashboard-header::after,
+.pending-page .dashboard-header::after {
+    content: none !important;
+}
+
+/* Override any negative margins */
+.pending-requests *[style*="margin-left: -"],
+.pending-page *[style*="margin-left: -"] {
+    margin-left: 0 !important;
+}
+
+/* ============================================
+   ABSOLUTE FINAL OVERRIDES - MAXIMUM PRIORITY
+   ============================================ */
+/* Force all white table elements to dark */
+[data-theme="dark"] table,
+[data-theme="dark"] table *:not(.btn):not(.badge):not(.btn-primary):not(.btn-success):not(.btn-danger):not(.btn-warning):not(.btn-info),
+[data-theme="dark"] .table,
+[data-theme="dark"] .table *:not(.btn):not(.badge):not(.btn-primary):not(.btn-success):not(.btn-danger):not(.btn-warning):not(.btn-info),
+[data-theme="dark"] tbody,
+[data-theme="dark"] tbody *:not(.btn):not(.badge),
+[data-theme="dark"] tr,
+[data-theme="dark"] td,
+[data-theme="dark"] th {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+}
+
+/* Force thead to be darker */
+[data-theme="dark"] thead,
+[data-theme="dark"] thead th,
+[data-theme="dark"] .table thead th,
+[data-theme="dark"] table thead th {
+    background-color: #1a202c !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+}
+
+/* Override badges and buttons in tables */
+[data-theme="dark"] table .badge,
+[data-theme="dark"] table .btn,
+[data-theme="dark"] .table .badge,
+[data-theme="dark"] .table .btn {
+    color: inherit !important;
+}
+
+/* Force modal content to dark */
+[data-theme="dark"] .modal-content,
+[data-theme="dark"] .modal-content *:not(.btn):not(.badge) {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+}
+
+[data-theme="dark"] .modal-body,
+[data-theme="dark"] .modal-header {
+    background-color: #2d3748 !important;
+    color: #f7fafc !important;
+}
+
+/* Force form inputs to dark */
+[data-theme="dark"] input:not([type="checkbox"]):not([type="radio"]),
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+    background-color: #374151 !important;
+    color: #f7fafc !important;
+    border-color: #4a5568 !important;
+}
+
+/* ============================================
+   ULTRA AGGRESSIVE - CATCH EVERYTHING WHITE
+   ============================================ */
+[data-theme="dark"] .table-responsive,
+[data-theme="dark"] .table-wrapper,
+[data-theme="dark"] .data-table,
+[data-theme="dark"] .datatable,
+[data-theme="dark"] [class*="table"],
+[data-theme="dark"] div:has(> table),
+[data-theme="dark"] div:has(> .table) {
+    background-color: #2d3748 !important;
+}
+
+/* Catch any div with white background */
+[data-theme="dark"] div[style*="background-color: white"],
+[data-theme="dark"] div[style*="background-color: #fff"],
+[data-theme="dark"] div[style*="background-color:#fff"],
+[data-theme="dark"] div[style*="background-color: rgb(255"],
+[data-theme="dark"] div[style*="background: white"],
+[data-theme="dark"] div[style*="background: #fff"],
+[data-theme="dark"] div[style*="background:#fff"] {
+    background-color: #2d3748 !important;
+}
+
+/* Catch any section with white background */
+[data-theme="dark"] section[style*="background"],
+[data-theme="dark"] article[style*="background"],
+[data-theme="dark"] main[style*="background"] {
+    background-color: #2d3748 !important;
+}
+
+/* Force everything with computed white background */
+[data-theme="dark"] * {
+    border-color: #4a5568 !important;
+}
+
+/* END OF DARK MODE STYLES */
