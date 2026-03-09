@@ -94,7 +94,7 @@ The system provides a transparent, traceable, and efficient way to handle suppli
 |-------|-----------|
 | **Backend** | PHP / Laravel Framework |
 | **Frontend** | Blade Templates, CSS, JavaScript |
-| **Database** | SQLite |
+| **Database** | MYSQL Workbench |
 | **Auth & Permissions** | Laravel Auth + Spatie Permission |
 | **Email** | Laravel Mailer (password reset, notifications) |
 | **Session & Cache** | Laravel Session / Cache drivers |
