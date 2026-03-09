@@ -185,10 +185,10 @@ PUPT_SMIS-Group-Astral-Angels-/
 │   ├── migrations/            # Database schema migrations
 │   └── seeders/               # Database seeders
 ├── public/                    # Publicly accessible assets
-├── resources/
-│   ├── views/                 # Blade templates (UI pages)
 │   ├── css/                   # Stylesheets
 │   └── js/                    # JavaScript files
+├── resources/
+│   └── views/                 # Blade templates (UI pages)
 ├── routes/
 │   └── web.php                # All application routes
 ├── storage/                   # Logs, cache, uploaded files
