@@ -2,7 +2,7 @@
 
 # 📦 PUPT SMIS
 ### Supply Management Information System
-#### *Pamantasan ng Lungsod ng Pasig — Group Astral Angels*
+#### *PUP Taguig — Group Gina's Astral Angels*
 
 <br>
 
@@ -212,8 +212,8 @@ Permissions are managed granularly using the **Spatie Laravel Permission** packa
 
 <div align="center">
 
-**Group Astral Angels**
-*Pamantasan ng Lungsod ng Pasig*
+**Group Gina's Astral Angels**
+*PUP Taguig*
 
 </div>
 
