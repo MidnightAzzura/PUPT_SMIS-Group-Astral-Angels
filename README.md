@@ -8,7 +8,7 @@
 
 [![PHP](https://img.shields.io/badge/PHP-8.x-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/)
 [![Laravel](https://img.shields.io/badge/Laravel-Framework-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com/)
-[![SQLite](https://img.shields.io/badge/SQLite-Database-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://sqlite.org/)
+[![MySQL](https://img.shields.io/badge/MySQL-Database-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
 <br>
@@ -106,7 +106,7 @@ The system provides a transparent, traceable, and efficient way to handle suppli
 - **PHP** >= 8.0
 - **Composer** (PHP dependency manager)
 - **Node.js** & **npm** (for frontend assets)
-- **SQLite** (included — no separate DB server required)
+- **MySQL** >= 5.7 or **MariaDB** >= 10.3 (a running MySQL/MariaDB server is required)
 - A web server such as **Apache** or **Nginx** (or use `php artisan serve` for local development)
 
 ---
@@ -141,11 +141,15 @@ php artisan key:generate
 
 ### 5. Configure the Database
 
-The application uses **SQLite** by default. Ensure your `.env` file has:
+The application uses **MySQL**. Open MySQL Workbench (or any MySQL client) and create a new database, then update your `.env` file with your credentials:
 
 ```env
-DB_CONNECTION=sqlite
-DB_DATABASE=${PWD}/database/database.sqlite
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=pupt_smis
+DB_USERNAME=your_mysql_username
+DB_PASSWORD=your_mysql_password
 ```
 
 ### 6. Run Migrations & Seed the Database
@@ -179,8 +183,7 @@ PUPT_SMIS-Group-Astral-Angels-/
 ├── config/                    # Application configuration files
 ├── database/
 │   ├── migrations/            # Database schema migrations
-│   ├── seeders/               # Database seeders
-│   └── database.sqlite        # SQLite database file
+│   └── seeders/               # Database seeders
 ├── public/                    # Publicly accessible assets
 ├── resources/
 │   ├── views/                 # Blade templates (UI pages)
