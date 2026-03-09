@@ -1,19 +1,39 @@
 <div align="center">
 
-# 📦 PUPT SMIS
-### Supply Management Information System
-#### *PUP Taguig — Group Gina's Astral Angels*
+<h1>📦 PUPT SMIS</h1>
+<h3>Supply Management Information System</h3>
+<p><em>PUP Taguig — Group Gina's Astral Angels</em></p>
 
-<br>
+<p>
+  <a href="https://www.php.net/">
+    <img src="https://img.shields.io/badge/PHP-8.x-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP 8.x">
+  </a>
+  <a href="https://laravel.com/">
+    <img src="https://img.shields.io/badge/Laravel-Framework-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel Framework">
+  </a>
+  <a href="https://www.mysql.com/">
+    <img src="https://img.shields.io/badge/MySQL-Database-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL Database">
+  </a>
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License">
+  </a>
+</p>
 
-[![PHP](https://img.shields.io/badge/PHP-8.x-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/)
-[![Laravel](https://img.shields.io/badge/Laravel-Framework-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com/)
-[![MySQL](https://img.shields.io/badge/MySQL-Database-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+<p>
+  A web-based <strong>Supply Management Information System</strong> designed for Pamantasan ng Lungsod ng Pasig (PUPT), enabling efficient tracking, requesting, and management of institutional supplies.
+</p>
 
-<br>
-
-> A web-based **Supply Management Information System** designed for Pamantasan ng Lungsod ng Pasig (PUPT), enabling efficient tracking, requesting, and management of institutional supplies.
+<p>
+  <a href="#-features">
+    <img src="https://img.shields.io/badge/View-Features-6A5ACD?style=flat-square" alt="View Features">
+  </a>
+  <a href="#-getting-started">
+    <img src="https://img.shields.io/badge/Open-Getting_Started-0A7EA4?style=flat-square" alt="Open Getting Started">
+  </a>
+  <a href="#-user-roles">
+    <img src="https://img.shields.io/badge/Check-User_Roles-2E8B57?style=flat-square" alt="Check User Roles">
+  </a>
+</p>
 
 </div>
 
@@ -38,6 +58,15 @@
 **PUPT SMIS** (Supply Management Information System) is a full-stack web application built to streamline the supply requisition and inventory management process at PUPT. It replaces manual paperwork with a digital workflow that supports multiple roles — from regular staff requesting supplies to administrators managing inventory and approving requests.
 
 The system provides a transparent, traceable, and efficient way to handle supplies — from request submission all the way to issuance and archiving.
+
+## 🌟 At a Glance
+
+| 🎯 Focus | 📌 What the system delivers |
+|----------|-----------------------------|
+| **Request Automation** | Replaces paper-based supply requests with a guided digital workflow |
+| **Inventory Visibility** | Gives administrators a clear view of stock levels and supply movement |
+| **Role-Based Access** | Keeps actions organized and secure for staff and administrators |
+| **Audit & Reporting** | Preserves request history, approvals, issuance, and archived records |
 
 ---
 
@@ -70,6 +99,12 @@ The system provides a transparent, traceable, and efficient way to handle suppli
 | **Approve/Reject** | Admin approves or rejects with remarks |
 | **Issue** | Approved requests are issued and tracked |
 | **Archive** | Completed requests are archived for records |
+
+### 🔄 Supply Request Journey
+
+| 1️⃣ Submit | 2️⃣ Review | 3️⃣ Decide | 4️⃣ Issue | 5️⃣ Archive |
+|-----------|------------|------------|----------|-------------|
+| Staff creates a request with quantity and purpose | Admin checks stock availability and request details | Request is approved or rejected with remarks | Approved supplies are released and recorded | Finished transactions are stored for reporting and history |
 
 ### 👥 User Management
 - Create, edit, and deactivate user accounts
@@ -112,6 +147,8 @@ The system provides a transparent, traceable, and efficient way to handle suppli
 ---
 
 ## 🚀 Getting Started
+
+> **Quick Start Flow:** Install dependencies → configure `.env` → migrate and seed the database → launch the Laravel development server.
 
 ### 1. Clone the Repository
 
@@ -185,9 +222,11 @@ PUPT_SMIS-Group-Astral-Angels-/
 │   ├── migrations/            # Database schema migrations
 │   └── seeders/               # Database seeders
 ├── public/                    # Publicly accessible assets
-│   ├── css/                   # Stylesheets
-│   └── js/                    # JavaScript files
+│   └── css/                   # Stylesheets
 ├── resources/
+│   ├── css/                   # Additional frontend styles
+│   ├── js/                    # Frontend scripts
+│   ├── templates/             # Reusable view fragments/templates
 │   └── views/                 # Blade templates (UI pages)
 ├── routes/
 │   └── web.php                # All application routes
@@ -206,14 +245,22 @@ PUPT_SMIS-Group-Astral-Angels-/
 
 Permissions are managed granularly using the **Spatie Laravel Permission** package, supporting fine-grained access control per action (e.g., `add-user`, `edit-supply`, `approve-request`).
 
+<details>
+<summary><strong>Role overview</strong></summary>
+
+- **Administrators** keep inventory accurate, process requests, manage users, and maintain records.
+- **Staff members** create supply requests, monitor their status, and reference the system FAQs when needed.
+
+</details>
+
 ---
 
 ## 👩‍💻 Contributors
 
 <div align="center">
 
-**Group Gina's Astral Angels**
-*PUP Taguig*
+<strong>Group Gina's Astral Angels</strong><br>
+<em>PUP Taguig</em>
 
 </div>
 
