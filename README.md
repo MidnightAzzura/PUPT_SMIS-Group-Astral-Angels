@@ -15,6 +15,10 @@
 
 > A web-based **Supply Management Information System** designed for Pamantasan ng Lungsod ng Pasig (PUPT), enabling efficient tracking, requesting, and management of institutional supplies.
 
+[![View Features](https://img.shields.io/badge/View-Features-6A5ACD?style=flat-square)](#-features)
+[![Setup Guide](https://img.shields.io/badge/Open-Getting_Started-0A7EA4?style=flat-square)](#-getting-started)
+[![User Roles](https://img.shields.io/badge/Check-User_Roles-2E8B57?style=flat-square)](#-user-roles)
+
 </div>
 
 ---
@@ -38,6 +42,15 @@
 **PUPT SMIS** (Supply Management Information System) is a full-stack web application built to streamline the supply requisition and inventory management process at PUPT. It replaces manual paperwork with a digital workflow that supports multiple roles — from regular staff requesting supplies to administrators managing inventory and approving requests.
 
 The system provides a transparent, traceable, and efficient way to handle supplies — from request submission all the way to issuance and archiving.
+
+## 🌟 At a Glance
+
+| 🎯 Focus | 📌 What the system delivers |
+|----------|-----------------------------|
+| **Request Automation** | Replaces paper-based supply requests with a guided digital workflow |
+| **Inventory Visibility** | Gives administrators a clear view of stock levels and supply movement |
+| **Role-Based Access** | Keeps actions organized and secure for staff and administrators |
+| **Audit & Reporting** | Preserves request history, approvals, issuance, and archived records |
 
 ---
 
@@ -70,6 +83,16 @@ The system provides a transparent, traceable, and efficient way to handle suppli
 | **Approve/Reject** | Admin approves or rejects with remarks |
 | **Issue** | Approved requests are issued and tracked |
 | **Archive** | Completed requests are archived for records |
+
+### 🔄 Supply Request Journey
+
+```mermaid
+flowchart LR
+    A[Staff submits request] --> B[Admin reviews request]
+    B -->|Approved| C[Supply is issued]
+    B -->|Rejected| D[Request returned with remarks]
+    C --> E[Transaction recorded and archived]
+```
 
 ### 👥 User Management
 - Create, edit, and deactivate user accounts
@@ -112,6 +135,8 @@ The system provides a transparent, traceable, and efficient way to handle suppli
 ---
 
 ## 🚀 Getting Started
+
+> **Quick Start Flow:** Install dependencies → configure `.env` → migrate and seed the database → launch the Laravel development server.
 
 ### 1. Clone the Repository
 
@@ -185,9 +210,11 @@ PUPT_SMIS-Group-Astral-Angels-/
 │   ├── migrations/            # Database schema migrations
 │   └── seeders/               # Database seeders
 ├── public/                    # Publicly accessible assets
-│   ├── css/                   # Stylesheets
-│   └── js/                    # JavaScript files
+│   └── css/                   # Stylesheets
 ├── resources/
+│   ├── css/                   # Additional frontend styles
+│   ├── js/                    # Frontend scripts
+│   ├── templates/             # Reusable view fragments/templates
 │   └── views/                 # Blade templates (UI pages)
 ├── routes/
 │   └── web.php                # All application routes
@@ -205,6 +232,14 @@ PUPT_SMIS-Group-Astral-Angels-/
 | **Staff / User** | Submit supply requests, view request history, access FAQs |
 
 Permissions are managed granularly using the **Spatie Laravel Permission** package, supporting fine-grained access control per action (e.g., `add-user`, `edit-supply`, `approve-request`).
+
+<details>
+<summary><strong>Role overview</strong></summary>
+
+- **Administrators** keep inventory accurate, process requests, manage users, and maintain records.
+- **Staff members** create supply requests, monitor their status, and reference the system FAQs when needed.
+
+</details>
 
 ---
 
